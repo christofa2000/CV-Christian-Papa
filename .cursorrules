@@ -1,0 +1,116 @@
+
+# .cursorrules — Cursor global rules for this repository
+
+language: "spanish"
+response_style: "concise, technical"
+
+communication:
+  explanations_language: "es"
+  code_language: "en"
+  always_show_full_files_on_change: true
+
+project_structure:
+  framework: "Next.js (App Router)"
+  languages: ["TypeScript", "TailwindCSS"]
+  ui_libraries: ["Framer Motion", "lucide-react", "shadcn/ui"]
+  root_dirs: ["app", "components", "lib", "public"]
+  pages:
+    home: "app/(root)/page.tsx"
+    layout: "app/layout.tsx"
+
+code_style:
+  typescript:
+    strict: true
+    noImplicitAny: true
+    exactOptionalPropertyTypes: true
+  react:
+    function_components_only: true
+    hooks_rules_enforced: true
+  tailwind:
+    preferred: true
+    avoid: ["inline styles", "css modules unless necessary"]
+  formatting:
+    prettier: true
+    semi: true
+    singleQuote: false
+
+accessibility:
+  enforce_contrast: "AA"
+  visible_focus: true
+  keyboard_navigation: true
+  skip_to_content_link: true
+  aria_only_when_needed: true
+  prefers_reduced_motion_support: true
+
+animations:
+  library: "Framer Motion"
+  guidelines:
+    - "Use subtle durations (0.18–0.35s) and easing"
+    - "Respect reduced motion: no parallax or large motion in reduce"
+    - "Unmount intro after exit and return focus to main"
+
+performance:
+  images:
+    use_next_image: true
+    lazy_loading: true
+    formats_preferred: ["webp", "avif"]
+    sizes_attribute_required: true
+  bundling:
+    code_splitting: true
+    avoid_heavy_deps: true
+  lighthouse_targets:
+    performance: ">=90"
+    accessibility: ">=100"
+    best_practices: ">=90"
+    seo: ">=90"
+
+security:
+  avoid:
+    - "unsafe inline scripts"
+    - "storing JWT in localStorage without safeguards"
+  headers:
+    add_basic_security_headers: true
+
+routing:
+  use_app_router: true
+  semantic_urls: true
+
+ui:
+  typography:
+    primary: ["Plus Jakarta Sans", "Inter"]
+    secondary: ["Fraunces"]
+  spacing_scale: [8, 12, 16, 24, 32]
+  components_tokens:
+    radii: { base: "xl", buttons: "2xl" }
+    shadows: { base: "md", hover: "lg" }
+
+naming:
+  components: "PascalCase"
+  routes: "kebab-case"
+  files_tsx: true
+
+limits:
+  avoid:
+    - "jQuery"
+    - "Class components"
+    - "Heavy CSS frameworks besides Tailwind"
+  prefer:
+    - "Zustand"
+    - "React Query"
+    - "next/image"
+    - "semantic HTML"
+
+workflows:
+  - "Explain briefly before showing code"
+  - "Ask before adding heavy dependencies"
+  - "When editing a file, output the entire file content"
+  - "Write unit comments only when they add value"
+
+testing:
+  playwright_smoke_optional: true
+  basic_routes_reachable: true
+
+prompts_defaults:
+  - "Use Spanish for explanations and English for code"
+  - "Respect accessibility and performance constraints"
+```

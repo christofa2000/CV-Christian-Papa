@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CV/Portfolio - Christian Oscar Papa
 
-## Getting Started
+Portfolio personal desarrollado con Next.js, TypeScript, Tailwind CSS y Framer Motion. Incluye una intro animada, navegación sticky con scrollspy, y secciones optimizadas para accesibilidad y performance.
 
-First, run the development server:
+## 🚀 Características
+
+- **Intro Animada**: Splash screen con animación del nombre respetando `prefers-reduced-motion`
+- **Navegación Sticky**: NavBar con scrollspy y menú móvil accesible
+- **Secciones**: Hero, Sobre mí (ES/EN), Proyectos, Contacto
+- **Accesibilidad**: Contraste AA, navegación por teclado, skip links
+- **Performance**: Optimizado para Lighthouse ≥90
+- **SEO**: Metadata completa, Open Graph, Twitter Cards, sitemap
+
+## 🛠️ Tecnologías
+
+- **Next.js 15** (App Router)
+- **TypeScript** (strict mode)
+- **Tailwind CSS** (con tokens personalizados)
+- **Framer Motion** (animaciones accesibles)
+- **Lucide React** (iconos)
+- **ESLint** (con reglas de accesibilidad)
+
+## 📦 Instalación
 
 ```bash
+# Instalar dependencias
+npm install
+
+# Ejecutar en desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build para producción
+npm run build
+
+# Ejecutar build
+npm start
+
+# Linting
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Scripts Disponibles
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev` - Servidor de desarrollo con Turbopack
+- `npm run build` - Build optimizado para producción
+- `npm run start` - Ejecutar build de producción
+- `npm run lint` - Verificar código con ESLint
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Despliegue
 
-## Learn More
+El proyecto está optimizado para Vercel:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Deploy a Vercel
+vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# O conectar repositorio en vercel.com
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📱 Responsive Design
 
-## Deploy on Vercel
+- **Mobile First**: Diseño optimizado para móviles
+- **Breakpoints**: sm (640px), md (768px), lg (1024px), xl (1280px)
+- **Grid System**: CSS Grid y Flexbox para layouts flexibles
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ♿ Accesibilidad
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Contraste**: Cumple estándares AA
+- **Navegación**: Completamente navegable por teclado
+- **Screen Readers**: Etiquetas ARIA apropiadas
+- **Focus Management**: Estados de foco visibles
+- **Reduced Motion**: Respeta preferencias de animación
+
+## 🚀 Performance
+
+- **Lighthouse Score**: ≥90 en todas las métricas
+- **Images**: Optimizadas con `next/image`
+- **Code Splitting**: Automático por rutas
+- **Bundle Size**: Minimizado sin dependencias pesadas
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── app/
+│   ├── layout.tsx          # Layout principal con metadata
+│   ├── page.tsx            # Página principal
+│   └── sitemap.ts          # Generador de sitemap
+├── components/
+│   ├── IntroSplash.tsx     # Intro animada
+│   ├── NavBar.tsx          # Navegación sticky
+│   ├── AboutMe.tsx         # Sección sobre mí
+│   ├── ProjectsGrid.tsx    # Grid de proyectos
+│   ├── ProjectCard.tsx     # Tarjeta de proyecto
+│   └── Contact.tsx         # Sección de contacto
+└── lib/
+    └── motion.ts           # Variantes de Framer Motion
+```
+
+## 🎨 Personalización
+
+### Colores
+
+Los colores están definidos en `tailwind.config.ts` con tokens personalizados.
+
+### Animaciones
+
+Las variantes de animación están en `lib/motion.ts` y respetan `prefers-reduced-motion`.
+
+### Contenido
+
+- **Proyectos**: Editar array en `ProjectsGrid.tsx`
+- **Información personal**: Actualizar en `AboutMe.tsx` y `Contact.tsx`
+- **Metadata**: Modificar en `layout.tsx`
+
+## 📄 Licencia
+
+© 2024 Christian Oscar Papa. Todos los derechos reservados.
+"# CV-Christian-Papa" 
