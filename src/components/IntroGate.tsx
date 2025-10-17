@@ -1,3 +1,4 @@
+// src/components/IntroGate.tsx (como lo pasaste)
 "use client";
 
 import { useCallback } from "react";
