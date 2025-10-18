@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const skills = [
   { name: "React", file: "icons/react.svg" },
-  { name: "Next.js", file: "icons/nextjs.svg" }, // Asegurate que sea .svg si así se llama
+  { name: "Next.js", file: "icons/nextjs.svg" },
   { name: "TypeScript", file: "icons/typescript.svg" },
   { name: "Tailwind CSS", file: "icons/tailwindcss.svg" },
   { name: "Framer Motion", file: "icons/framermotion.svg" },
@@ -94,9 +95,9 @@ export default function AboutMe() {
                         : "bg-neutral-800/40 backdrop-blur-sm",
                     ].join(" ")}
                   >
-                    {/* Usamos <img> directo para SVG del /public */}
-                    <img
-                      src={`/logos/${file}`}
+                    {/* Usamos next/image para optimización */}
+                    <Image
+                      src={`/${file}`}
                       alt={name}
                       width={48}
                       height={48}
@@ -110,7 +111,7 @@ export default function AboutMe() {
                           "0.3";
                         (
                           e.currentTarget as HTMLImageElement
-                        ).title = `No se encontró /logos/${file}`;
+                        ).title = `No se encontró /${file}`;
                       }}
                     />
                     <div className="pointer-events-none absolute -inset-2 rounded-3xl blur-2xl opacity-10 bg-white/20" />

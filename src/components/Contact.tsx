@@ -87,8 +87,8 @@ export default function Contact() {
           {/* Download CV Button */}
           <motion.div variants={fadeInUp}>
             <a
-              href="/cv-christian-papa.pdf"
-              download="CV-Christian-Papa.pdf"
+              href="/christian-papa.pdf"
+              download="Christian-Papa.pdf"
               className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white font-semibold rounded-2xl hover:bg-indigo-700 transition-colors focus-ring shadow-lg hover:shadow-xl"
             >
               <Download size={20} />
