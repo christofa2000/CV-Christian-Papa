@@ -1,9 +1,9 @@
 "use client";
 
-import { slideInFromLeft, slideInFromRight } from "@/lib/motion";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 interface Project {
   id: string;
@@ -13,7 +13,7 @@ interface Project {
   demoUrl?: string;
   repoUrl?: string;
   technologies: string[];
-  side: "left" | "right";
+  // side?: "left" | "right"; // ← ya no lo usamos para el layout
 }
 
 interface ProjectCardProps {
@@ -21,31 +21,59 @@ interface ProjectCardProps {
   index: number;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
-  const isLeft = project.side === "left";
-  const animationVariant = isLeft ? slideInFromLeft : slideInFromRight;
+export default function ProjectCard({ project, index }: ProjectCardProps) {
+  // Alternado por índice: pares => imagen izquierda; impares => imagen derecha
+  const isLeft = index % 2 === 0;
+
+  const rootRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(rootRef, { amount: 0.3 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start(inView ? "show" : "hidden");
+  }, [inView, controls]);
+
+  // Imagen entra desde su borde natural
+  const imageSlide = {
+    hidden: { x: isLeft ? -220 : 220, opacity: 0 },
+    show: {
+      x: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 70, damping: 14 },
+    },
+  };
+
+  // Texto entra desde el lado opuesto
+  const textSlide = {
+    hidden: { x: isLeft ? 220 : -220, opacity: 0 },
+    show: {
+      x: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 70, damping: 14, delay: 0.03 },
+    },
+  };
 
   return (
     <motion.article
-      initial="initial"
-      whileInView="whileInView"
-      viewport={{ once: true }}
-      variants={animationVariant}
-      className={`grid lg:grid-cols-2 gap-8 items-center ${
-        isLeft ? "" : "lg:grid-flow-col-dense"
-      }`}
+      ref={rootRef}
+      initial="hidden"
+      animate={controls}
+      viewport={{ once: false, amount: 0.3 }}
+      className="grid lg:grid-cols-2 gap-12 items-center"
     >
-      {/* Imagen */}
+      {/* IMAGEN */}
       <motion.div
-        className={`relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-lg ${
-          isLeft ? "lg:order-1" : "lg:order-2"
-        }`}
+        variants={imageSlide}
+        className={`group relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-lg
+          ${
+            isLeft ? "lg:order-1" : "lg:order-2"
+          } w-full lg:w-4/5 xl:w-3/4 mx-auto`}
       >
         <Image
           src={project.image}
           alt={`Screenshot del proyecto ${project.title}`}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
 
@@ -78,9 +106,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </motion.div>
 
-      {/* Contenido */}
+      {/* TEXTO */}
       <motion.div
-        className={`space-y-6 ${isLeft ? "lg:order-2" : "lg:order-1"}`}
+        variants={textSlide}
+        className={`space-y-6 ${
+          isLeft ? "lg:order-2" : "lg:order-1"
+        } w-full lg:w-4/5 xl:w-3/4 mx-auto`}
       >
         <div className="space-y-4">
           <h3 className="text-3xl font-semibold text-neutral-200">
@@ -91,7 +122,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </p>
         </div>
 
-        {/* Technologies */}
         <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech) => (
             <span
@@ -103,7 +133,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
 
-        {/* Links */}
         <div className="flex flex-wrap gap-4">
           {project.demoUrl && (
             <a

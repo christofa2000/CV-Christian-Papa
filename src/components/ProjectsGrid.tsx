@@ -1,31 +1,70 @@
 "use client";
 
-import { fadeInUp, stagger } from "@/lib/motion";
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 
-const projects = [
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  demoUrl?: string;
+  repoUrl?: string;
+  technologies: string[];
+}
+
+const projects: Project[] = [
   {
-    id: "ecommerce-platform",
-    title: "E-commerce Platform",
+    id: "museo-del-tiempo",
+    title: "Museo del Tiempo",
     description:
-      "Plataforma de comercio electrónico completa con carrito de compras, pagos integrados y panel de administración. Construida con Next.js, TypeScript y Stripe para una experiencia de compra fluida y segura.",
-    image: "/placeholder-project-1.jpg",
-    demoUrl: "https://demo-ecommerce.com",
-    repoUrl: "https://github.com/christianpapa/ecommerce-platform",
-    technologies: ["Next.js", "TypeScript", "Stripe", "Prisma", "Tailwind CSS"],
-    side: "left" as const,
+      "Aplicación web que consume tres APIs diferentes para ofrecer una experiencia interactiva y educativa. Combina tecnología moderna y curiosidad histórica, permitiendo explorar datos, imágenes y eventos de distintas épocas a través de una interfaz intuitiva y dinámica.",
+    image: "/api.png",
+    demoUrl: "https://museo-del-tiempo.vercel.app/",
+    repoUrl: "https://github.com/christofa2000/API-Museo-del-tiempo",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "APIs públicas (iTunes, Wikipedia, Art Institute of Chicago)",
+    ],
   },
   {
-    id: "task-management",
-    title: "Task Management App",
+    id: "motorlider",
+    title: "Motorlider",
     description:
-      "Aplicación de gestión de tareas con drag & drop, colaboración en tiempo real y notificaciones. Incluye tableros Kanban, asignación de tareas y seguimiento de progreso en equipo.",
-    image: "/placeholder-project-2.jpg",
-    demoUrl: "https://demo-tasks.com",
-    repoUrl: "https://github.com/christianpapa/task-management",
-    technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Framer Motion"],
-    side: "right" as const,
+      "Plataforma para concesionaria: catálogo de motos, gestión de inventario, financiación y turnos de test ride. Incluye panel administrativo, carga de unidades con imágenes y seguimiento de leads.",
+    image: "/motorlider.png",
+    // demoUrl: "https://motorlider.tu-dominio.com",
+    // repoUrl: "https://github.com/christofa2000/motorlider",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Prisma",
+      "PostgreSQL",
+      "NextAuth",
+      "Cloudinary",
+    ],
+  },
+  {
+    id: "credit-cards-lab",
+    title: "Credit Cards Lab",
+    description:
+      "Aplicación bancaria interactiva para gestionar tarjetas de crédito, consultar movimientos y simular compras en tiempo real. Incluye login seguro, dashboard financiero y animaciones suaves con Framer Motion.",
+    image: "/tarjeta.png",
+    demoUrl: "https://tarjetasprueba.netlify.app/",
+    repoUrl: "https://github.com/christofa2000/tarjetas",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Prisma",
+      "PostgreSQL",
+    ],
   },
   {
     id: "portfolio-website",
@@ -36,62 +75,34 @@ const projects = [
     demoUrl: "https://christianpapa.dev",
     repoUrl: "https://github.com/christianpapa/portfolio",
     technologies: ["Next.js", "Framer Motion", "Tailwind CSS", "TypeScript"],
-    side: "left" as const,
-  },
-  {
-    id: "weather-dashboard",
-    title: "Weather Dashboard",
-    description:
-      "Dashboard meteorológico con mapas interactivos, pronósticos detallados y alertas personalizadas. Integración con APIs meteorológicas y visualizaciones en tiempo real.",
-    image: "/placeholder-project-4.jpg",
-    demoUrl: "https://demo-weather.com",
-    repoUrl: "https://github.com/christianpapa/weather-dashboard",
-    technologies: ["React", "D3.js", "OpenWeather API", "Chart.js"],
-    side: "right" as const,
-  },
-  {
-    id: "social-media-app",
-    title: "Social Media App",
-    description:
-      "Red social moderna con feed personalizado, mensajería en tiempo real y sistema de seguimiento. Incluye notificaciones push, stories y sistema de likes/comentarios.",
-    image: "/placeholder-project-5.jpg",
-    demoUrl: "https://demo-social.com",
-    repoUrl: "https://github.com/christianpapa/social-app",
-    technologies: ["Next.js", "GraphQL", "PostgreSQL", "Redis", "AWS"],
-    side: "left" as const,
-  },
-  {
-    id: "analytics-dashboard",
-    title: "Analytics Dashboard",
-    description:
-      "Panel de análisis de datos con visualizaciones interactivas y reportes automatizados. Dashboard ejecutivo con métricas en tiempo real y exportación de datos.",
-    image: "/placeholder-project-6.jpg",
-    demoUrl: "https://demo-analytics.com",
-    repoUrl: "https://github.com/christianpapa/analytics-dashboard",
-    technologies: ["React", "D3.js", "Python", "FastAPI", "PostgreSQL"],
-    side: "right" as const,
   },
 ];
 
 export default function ProjectsGrid() {
+  const fadeOnly = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { duration: 0.45, ease: "easeOut" } },
+  };
+
   return (
-    <section id="proyectos" className="py-24 bg-neutral-900/50">
+    <section id="proyectos" className="py-32 md:py-36 bg-neutral-900/50">
       <div className="container mx-auto px-4">
+        {/* Encabezado */}
         <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={fadeOnly}
           className="text-center mb-16"
         >
           <motion.h2
-            variants={fadeInUp}
+            variants={fadeOnly}
             className="text-4xl md:text-5xl font-semibold text-neutral-200 mb-6"
           >
             Proyectos
           </motion.h2>
           <motion.p
-            variants={fadeInUp}
+            variants={fadeOnly}
             className="text-xl text-neutral-400 max-w-3xl mx-auto"
           >
             Una selección de proyectos que demuestran mi experiencia en
@@ -99,7 +110,8 @@ export default function ProjectsGrid() {
           </motion.p>
         </motion.div>
 
-        <div className="space-y-24">
+        {/* Lista de proyectos con más espacio y alternado */}
+        <div className="space-y-32 md:space-y-40">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}

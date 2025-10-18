@@ -7,19 +7,19 @@ import { Download, Github, Linkedin, Mail } from "lucide-react";
 const contactLinks = [
   {
     name: "Email",
-    href: "mailto:christian.papa@email.com",
+    href: "christofa2000@gmail.com",
     icon: Mail,
     label: "Enviar email a Christian Papa",
   },
   {
     name: "GitHub",
-    href: "https://github.com/christianpapa",
+    href: "https://github.com/christofa2000",
     icon: Github,
     label: "Ver perfil de GitHub de Christian Papa",
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/christianpapa",
+    href: "https://www.linkedin.com/in/christian-oscar-papa?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     icon: Linkedin,
     label: "Ver perfil de LinkedIn de Christian Papa",
   },
