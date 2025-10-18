@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 
 const skills = [
-  { name: "React", file: "react.svg" },
-  { name: "Next.js", file: "nextjs.svg" }, // Asegurate que sea .svg si así se llama
-  { name: "TypeScript", file: "typescript.svg" },
-  { name: "Tailwind CSS", file: "tailwindcss.svg" },
-  { name: "Framer Motion", file: "framermotion.svg" },
-  { name: "Node.js", file: "nodejs.svg" },
-  { name: "GitHub", file: "github.svg" },
-  { name: "Figma", file: "figma.svg" },
+  { name: "React", file: "icons/react.svg" },
+  { name: "Next.js", file: "icons/nextjs.svg" }, // Asegurate que sea .svg si así se llama
+  { name: "TypeScript", file: "icons/typescript.svg" },
+  { name: "Tailwind CSS", file: "icons/tailwindcss.svg" },
+  { name: "Framer Motion", file: "icons/framermotion.svg" },
+  { name: "Node.js", file: "icons/nodejs.svg" },
+  { name: "GitHub", file: "icons/github.svg" },
+  { name: "Figma", file: "icons/figma.svg" },
 ];
 
 const fade = {
@@ -30,16 +30,35 @@ export default function AboutMe() {
           variants={fade}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-semibold text-neutral-200">
+          <h2 className="text-4xl md:text-5xl font-semibold text-neutral-200 text-center">
             Sobre mí
           </h2>
-          <p className="mt-5 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
-            Soy desarrollador frontend, enfocado en crear experiencias web
-            modernas, accesibles y de alto rendimiento con React y Next.js.
+
+          <p className="mt-6 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
+            Soy{" "}
+            <span className="text-neutral-200 font-medium">
+              Desarrollador Frontend
+            </span>{" "}
+            especializado en <span className="text-neutral-200">React</span> y{" "}
+            <span className="text-neutral-200">TypeScript</span>. Creo
+            experiencias web modernas, accesibles y de alto rendimiento, con
+            foco en la escalabilidad y el detalle.
           </p>
-          <p className="mt-4 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
-            Disfruto trabajar en equipo, documentar bien y mejorar procesos con
-            buenas prácticas.
+
+          <p className="mt-5 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
+            Trabajo con <span className="text-neutral-200">Next.js</span>,{" "}
+            <span className="text-neutral-200">Zustand</span>,{" "}
+            <span className="text-neutral-200">React Query</span> y{" "}
+            <span className="text-neutral-200">Tailwind</span>, aplicando buenas
+            prácticas y tests con <span className="text-neutral-200">Jest</span>{" "}
+            y <span className="text-neutral-200">React Testing Library</span>.
+          </p>
+
+          <p className="mt-5 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
+            Me definen la <span className="text-neutral-200">comunicación</span>
+            , la <span className="text-neutral-200">adaptabilidad</span> y el
+            trabajo en equipo, siempre buscando mejorar procesos y aprender algo
+            nuevo en cada proyecto.
           </p>
         </motion.div>
 
