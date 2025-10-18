@@ -1,114 +1,100 @@
 "use client";
 
-import { fadeInUp, stagger } from "@/lib/motion";
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 
-const contactLinks = [
-  {
-    name: "Email",
-    href: "christofa2000@gmail.com",
-    icon: Mail,
-    label: "Enviar email a Christian Papa",
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/christofa2000",
-    icon: Github,
-    label: "Ver perfil de GitHub de Christian Papa",
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/christian-oscar-papa?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-    icon: Linkedin,
-    label: "Ver perfil de LinkedIn de Christian Papa",
-  },
-];
+const fade = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+};
 
-export default function Contact() {
+export default function AboutMe() {
   return (
-    <section id="contacto" className="py-20 md:py-24 bg-neutral-900/50">
-      <div className="container mx-auto px-4">
+    <section id="sobre-mi" className="py-32 md:py-40 bg-neutral-900/30">
+      <div className="mx-auto max-w-5xl px-4">
+        {/* Texto principal */}
         <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={stagger}
-          className="max-w-4xl mx-auto text-center"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.35 }}
+          variants={fade}
+          className="text-center"
         >
-          <motion.h2
-            variants={fadeInUp}
-            className="text-5xl md:text-6xl lg:text-7xl font-semibold text-neutral-200 mb-6"
-          >
-            Contacto
-          </motion.h2>
-          <motion.p
-            variants={fadeInUp}
-            className="text-xl md:text-2xl lg:text-3xl text-neutral-400 mb-12"
-          >
-            ¿Tienes un proyecto en mente? Me encantaría escuchar sobre él.
-          </motion.p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-neutral-200 text-center">
+            Sobre mí
+          </h2>
 
-          {/* Contact Links */}
-          <motion.div
-            variants={stagger}
-            className="flex flex-wrap justify-center gap-6 mb-12"
-          >
-            {contactLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <motion.a
-                  key={link.name}
-                  variants={fadeInUp}
-                  href={link.href}
-                  target={
-                    link.href.startsWith("mailto:") ? undefined : "_blank"
-                  }
-                  rel={
-                    link.href.startsWith("mailto:")
-                      ? undefined
-                      : "noopener noreferrer"
-                  }
-                  aria-label={link.label}
-                  className="group flex items-center gap-3 px-6 py-4 bg-neutral-800 rounded-2xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 focus-ring"
-                >
-                  <Icon
-                    size={24}
-                    className="text-neutral-400 group-hover:text-indigo-400 transition-colors"
-                  />
-                  <span className="font-medium text-neutral-200 group-hover:text-indigo-400 transition-colors">
-                    {link.name}
-                  </span>
-                </motion.a>
-              );
-            })}
-          </motion.div>
+          <p className="mt-6 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
+            Soy{" "}
+            <span className="text-neutral-200 font-medium">
+              Desarrollador Frontend
+            </span>{" "}
+            especializado en <span className="text-neutral-200">React</span> y{" "}
+            <span className="text-neutral-200">TypeScript</span>. Creo
+            experiencias web modernas, accesibles y de alto rendimiento, con
+            foco en la escalabilidad y el detalle.
+          </p>
 
-          {/* Download CV Button */}
-          <motion.div variants={fadeInUp}>
-            <a
-              href="/christian-papa.pdf"
-              download="Christian-Papa.pdf"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white font-semibold rounded-2xl hover:bg-indigo-700 transition-colors focus-ring shadow-lg hover:shadow-xl"
+          <p className="mt-5 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
+            Trabajo con <span className="text-neutral-200">Next.js</span>,{" "}
+            <span className="text-neutral-200">Zustand</span>,{" "}
+            <span className="text-neutral-200">React Query</span> y{" "}
+            <span className="text-neutral-200">Tailwind</span>, aplicando buenas
+            prácticas y tests con <span className="text-neutral-200">Jest</span>{" "}
+            y <span className="text-neutral-200">React Testing Library</span>.
+          </p>
+
+          <p className="mt-5 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
+            Me definen la <span className="text-neutral-200">comunicación</span>
+            , la <span className="text-neutral-200">adaptabilidad</span> y el
+            trabajo en equipo, siempre buscando mejorar procesos y aprender algo
+            nuevo en cada proyecto.
+          </p>
+        </motion.div>
+
+        {/* Íconos del stack (skillicons.dev) */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.25 }}
+          variants={fade}
+          className="mt-14 md:mt-16 flex flex-wrap justify-center gap-4 sm:gap-5 md:gap-6"
+        >
+          {[
+            "react",
+            "nextjs",
+            "typescript",
+            "javascript",
+            "tailwind",
+            "redux",
+            "prisma",
+            "postgres",
+            "nodejs",
+            "cloudflare",
+            "vercel",
+            "git",
+            "github",
+            "figma",
+            "vitest",
+            "jest",
+          ].map((icon) => (
+            <motion.div
+              key={icon}
+              whileHover={{ scale: 1.12, rotate: 1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              className="w-12 h-12 md:w-14 md:h-14"
             >
-              <Download size={20} />
-              Descargar CV
-            </a>
-          </motion.div>
-
-          {/* Additional Info */}
-          <motion.div
-            variants={fadeInUp}
-            className="mt-12 p-6 bg-neutral-800 rounded-2xl border border-white/10 shadow-lg"
-          >
-            <h3 className="text-lg font-semibold text-neutral-200 mb-2">
-              Disponibilidad
-            </h3>
-            <p className="text-neutral-400">
-              Actualmente disponible para proyectos freelance y oportunidades de
-              trabajo remoto. Respuesta garantizada en 24 horas.
-            </p>
-          </motion.div>
+              <Image
+                src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+                alt={icon}
+                width={56}
+                height={56}
+                unoptimized
+                className="rounded-lg"
+              />
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
