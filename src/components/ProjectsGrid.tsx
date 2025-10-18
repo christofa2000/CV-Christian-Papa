@@ -34,10 +34,10 @@ const projects: Project[] = [
     id: "motorlider",
     title: "Motorlider",
     description:
-      "Plataforma para concesionaria: catálogo de motos, gestión de inventario, financiación y turnos de test ride. Incluye panel administrativo, carga de unidades con imágenes y seguimiento de leads.",
+      "Plataforma para casa de repuestos: catálogo completo de productos, gestión de stock, ventas y pedidos en línea. Incluye panel administrativo para cargar repuestos con imágenes, controlar inventario y atender consultas de clientes.",
     image: "/motorlider.png",
-    // demoUrl: "https://motorlider.tu-dominio.com",
-    // repoUrl: "https://github.com/christofa2000/motorlider",
+    demoUrl: "https://motorlider.netlify.app/",
+    repoUrl: "https://github.com/christofa2000/motorlider-fullstack",
     technologies: [
       "Next.js",
       "TypeScript",
