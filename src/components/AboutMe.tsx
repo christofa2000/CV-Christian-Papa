@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const skills = [
   { name: "React", file: "react.svg" },
-  { name: "Next.js", file: "nextjs.svg" }, // <-- asegurate que exista exactamente
+  { name: "Next.js", file: "nextjs.svg" }, // Asegurate que sea .svg si así se llama
   { name: "TypeScript", file: "typescript.svg" },
   { name: "Tailwind CSS", file: "tailwindcss.svg" },
   { name: "Framer Motion", file: "framermotion.svg" },
@@ -23,6 +22,7 @@ export default function AboutMe() {
   return (
     <section id="sobre-mi" className="py-32 md:py-40 bg-neutral-900/30">
       <div className="mx-auto max-w-5xl px-4">
+        {/* Texto principal */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -38,11 +38,12 @@ export default function AboutMe() {
             modernas, accesibles y de alto rendimiento con React y Next.js.
           </p>
           <p className="mt-4 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
-            Disfruto trabajar en equipo, documentar bien y mejorar los procesos
-            con buenas prácticas.
+            Disfruto trabajar en equipo, documentar bien y mejorar procesos con
+            buenas prácticas.
           </p>
         </motion.div>
 
+        {/* Logos de tecnologías */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -74,7 +75,8 @@ export default function AboutMe() {
                         : "bg-neutral-800/40 backdrop-blur-sm",
                     ].join(" ")}
                   >
-                    <Image
+                    {/* Usamos <img> directo para SVG del /public */}
+                    <img
                       src={`/logos/${file}`}
                       alt={name}
                       width={48}
@@ -83,6 +85,14 @@ export default function AboutMe() {
                         "w-10 h-10 md:w-12 md:h-12 object-contain",
                         needsWhiteBg ? "mix-blend-multiply" : "",
                       ].join(" ")}
+                      onError={(e) => {
+                        // Fallback visual si hubiera un typo/ruta rota:
+                        (e.currentTarget as HTMLImageElement).style.opacity =
+                          "0.3";
+                        (
+                          e.currentTarget as HTMLImageElement
+                        ).title = `No se encontró /logos/${file}`;
+                      }}
                     />
                     <div className="pointer-events-none absolute -inset-2 rounded-3xl blur-2xl opacity-10 bg-white/20" />
                   </div>
