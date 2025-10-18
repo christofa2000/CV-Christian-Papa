@@ -2,7 +2,12 @@ import IntroGate from "@/components/IntroGate";
 import type { Metadata } from "next";
 import "./globals.css";
 
+/** URL base del sitio: en local usa localhost, en prod lee NEXT_PUBLIC_SITE_URL */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
+  /** 👇 Evita el warning de Next y resuelve OG/Twitter correctamente */
+  metadataBase: new URL(siteUrl),
   title: "Christian Oscar Papa — Frontend React + TypeScript",
   description:
     "CV/Portfolio con intro animada, accesible y de alto rendimiento.",
@@ -20,13 +25,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://christianpapa.dev",
+    url: siteUrl,
     title: "Christian Oscar Papa — Frontend React + TypeScript",
     description:
       "CV/Portfolio con intro animada, accesible y de alto rendimiento.",
     siteName: "Christian Papa Portfolio",
     images: [
       {
+        /** Con metadataBase, /og.jpg resuelve a {siteUrl}/og.jpg */
         url: "/og.jpg",
         width: 1200,
         height: 630,
@@ -54,6 +60,11 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "your-google-verification-code",
+  },
+  /** (Opcional) Favicon e iconos si los tenés en /app o /public */
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
   },
 };
 

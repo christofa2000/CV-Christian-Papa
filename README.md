@@ -1,89 +1,98 @@
-# CV/Portfolio - Christian Oscar Papa
+# 🌌 CV / Portfolio — Christian Oscar Papa
 
-Portfolio personal desarrollado con Next.js, TypeScript, Tailwind CSS y Framer Motion. Incluye una intro animada, navegación sticky con scrollspy, y secciones optimizadas para accesibilidad y performance.
+![Vista previa del sitio](./public/cv.png)
 
-## 🚀 Características
+> 💼 **Desarrollador Frontend especializado en React + TypeScript**  
+> Creando experiencias digitales modernas con Next.js, animaciones fluidas y un diseño accesible y escalable.
 
-- **Intro Animada**: Splash screen con animación del nombre respetando `prefers-reduced-motion`
-- **Navegación Sticky**: NavBar con scrollspy y menú móvil accesible
-- **Secciones**: Hero, Sobre mí (ES/EN), Proyectos, Contacto
-- **Accesibilidad**: Contraste AA, navegación por teclado, skip links
-- **Performance**: Optimizado para Lighthouse ≥90
-- **SEO**: Metadata completa, Open Graph, Twitter Cards, sitemap
+---
+
+## ✨ Características principales
+
+- 🎬 **Intro animada** — Splash screen con animación del nombre y soporte para `prefers-reduced-motion`.
+- 🧭 **Navegación Sticky** — Barra superior con scrollspy y menú móvil accesible.
+- 🧩 **Secciones completas** — Hero, Sobre mí (ES/EN), Proyectos, Contacto.
+- ♿ **Accesibilidad avanzada** — Navegación por teclado, contraste AA y focus management.
+- ⚡ **Performance optimizada** — Lighthouse ≥90 en todas las métricas.
+- 🔍 **SEO profesional** — Metadata completa, Open Graph, Twitter Cards y sitemap automático.
+
+---
 
 ## 🛠️ Tecnologías
 
-- **Next.js 15** (App Router)
-- **TypeScript** (strict mode)
-- **Tailwind CSS** (con tokens personalizados)
-- **Framer Motion** (animaciones accesibles)
-- **Lucide React** (iconos)
-- **ESLint** (con reglas de accesibilidad)
+| Tecnología            | Uso principal                            |
+| --------------------- | ---------------------------------------- |
+| **Next.js 15**        | App Router, Server Components            |
+| **TypeScript**        | Tipado estricto y seguro                 |
+| **Tailwind CSS**      | Tokens personalizados, diseño responsive |
+| **Framer Motion**     | Animaciones accesibles                   |
+| **Lucide React**      | Iconos SVG optimizados                   |
+| **ESLint + Prettier** | Código limpio y consistente              |
 
-## 📦 Instalación
+---
+
+## ⚙️ Instalación y uso
 
 ```bash
-# Instalar dependencias
+# 1️⃣ Instalar dependencias
 npm install
 
-# Ejecutar en desarrollo
+# 2️⃣ Ejecutar en desarrollo
 npm run dev
 
-# Build para producción
+# 3️⃣ Build para producción
 npm run build
 
-# Ejecutar build
+# 4️⃣ Ejecutar build
 npm start
 
-# Linting
+# 5️⃣ Linting
 npm run lint
-```
+📜 Scripts disponibles
+Script	Descripción
+npm run dev	Servidor de desarrollo (Turbopack)
+npm run build	Build optimizado para producción
+npm run start	Ejecuta el build
+npm run lint	Verifica el código con ESLint
 
-## 🎯 Scripts Disponibles
-
-- `npm run dev` - Servidor de desarrollo con Turbopack
-- `npm run build` - Build optimizado para producción
-- `npm run start` - Ejecutar build de producción
-- `npm run lint` - Verificar código con ESLint
-
-## 🌐 Despliegue
-
-El proyecto está optimizado para Vercel:
-
-```bash
-# Deploy a Vercel
+🌐 Despliegue en Vercel
+bash
+Copiar código
+# Deploy manual
 vercel
 
-# O conectar repositorio en vercel.com
-```
+# O conectar el repositorio directamente en vercel.com
+🔧 El proyecto está optimizado para Vercel, con rutas estáticas y assets optimizados mediante next/image.
 
-## 📱 Responsive Design
+📱 Diseño responsive
+📏 Mobile First
 
-- **Mobile First**: Diseño optimizado para móviles
-- **Breakpoints**: sm (640px), md (768px), lg (1024px), xl (1280px)
-- **Grid System**: CSS Grid y Flexbox para layouts flexibles
+💻 Breakpoints: sm, md, lg, xl
 
-## ♿ Accesibilidad
+🧮 Layouts con CSS Grid y Flexbox
 
-- **Contraste**: Cumple estándares AA
-- **Navegación**: Completamente navegable por teclado
-- **Screen Readers**: Etiquetas ARIA apropiadas
-- **Focus Management**: Estados de foco visibles
-- **Reduced Motion**: Respeta preferencias de animación
+♿ Accesibilidad
+✅ Contraste AA
+✅ Navegación por teclado
+✅ Etiquetas ARIA
+✅ Estados de foco visibles
+✅ Respeto por prefers-reduced-motion
 
-## 🚀 Performance
+🚀 Performance
+⚡ Lighthouse ≥90
 
-- **Lighthouse Score**: ≥90 en todas las métricas
-- **Images**: Optimizadas con `next/image`
-- **Code Splitting**: Automático por rutas
-- **Bundle Size**: Minimizado sin dependencias pesadas
+🖼️ Imágenes optimizadas con next/image
 
-## 📁 Estructura del Proyecto
+🧩 Code splitting automático
 
-```
+📦 Bundle minimalista sin dependencias pesadas
+
+🧭 Estructura del proyecto
+bash
+Copiar código
 src/
 ├── app/
-│   ├── layout.tsx          # Layout principal con metadata
+│   ├── layout.tsx          # Layout principal y metadata
 │   ├── page.tsx            # Página principal
 │   └── sitemap.ts          # Generador de sitemap
 ├── components/
@@ -95,25 +104,22 @@ src/
 │   └── Contact.tsx         # Sección de contacto
 └── lib/
     └── motion.ts           # Variantes de Framer Motion
+🎨 Personalización
+🎨 Colores
+Definidos en tailwind.config.ts con tokens personalizados.
+
+🌀 Animaciones
+Centralizadas en lib/motion.ts, respetando prefers-reduced-motion.
+
+🧾 Contenido
+Proyectos → ProjectsGrid.tsx
+
+Datos personales → AboutMe.tsx y Contact.tsx
+
+Metadata SEO → layout.tsx
+
+📄 Licencia
+© 2024 Christian Oscar Papa
+Todos los derechos reservados.
+
 ```
-
-## 🎨 Personalización
-
-### Colores
-
-Los colores están definidos en `tailwind.config.ts` con tokens personalizados.
-
-### Animaciones
-
-Las variantes de animación están en `lib/motion.ts` y respetan `prefers-reduced-motion`.
-
-### Contenido
-
-- **Proyectos**: Editar array en `ProjectsGrid.tsx`
-- **Información personal**: Actualizar en `AboutMe.tsx` y `Contact.tsx`
-- **Metadata**: Modificar en `layout.tsx`
-
-## 📄 Licencia
-
-© 2024 Christian Oscar Papa. Todos los derechos reservados.
-"# CV-Christian-Papa" 

@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Hero component coincide con el snapshot 1`] = `
+<div>
+  <section
+    class="min-h-[85vh] flex items-center py-16"
+  >
+    <div
+      class="mx-auto max-w-6xl md:max-w-7xl px-4 sm:px-6 lg:px-8 2xl:px-12 w-full"
+    >
+      <div
+        class="grid lg:grid-cols-2 gap-12 items-center"
+      >
+        <div
+          class="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6"
+        >
+          <div
+            class="space-y-4 max-w-2xl"
+          >
+            <h1
+              class="text-5xl md:text-7xl lg:text-8xl font-semibold text-neutral-200 leading-tight"
+            >
+              Hola, soy
+               
+              <span
+                class="text-violet-400"
+              >
+                Christian Oscar Papa
+              </span>
+            </h1>
+            <p
+              class="text-xl md:text-2xl lg:text-3xl text-neutral-400 leading-relaxed"
+            >
+              Desarrollador Frontend especializado en React, Next.js y TypeScript. Creando experiencias web modernas, accesibles y performantes.
+            </p>
+          </div>
+          <div
+            class="flex flex-col sm:flex-row gap-4 pt-2"
+          >
+            <button
+              class="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition-colors focus-ring shadow-lg hover:shadow-xl"
+            >
+              Ver proyectos
+              <svg
+                class="lucide lucide-arrow-down group-hover:translate-y-1 transition-transform"
+                fill="none"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 5v14"
+                />
+                <path
+                  d="m19 12-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <button
+              class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-neutral-600 text-neutral-200 font-semibold rounded-full hover:bg-neutral-800 transition-colors focus-ring"
+            >
+              <svg
+                class="lucide lucide-mail"
+                fill="none"
+                height="20"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="16"
+                  rx="2"
+                  width="20"
+                  x="2"
+                  y="4"
+                />
+                <path
+                  d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                />
+              </svg>
+              Contacto
+            </button>
+          </div>
+        </div>
+        <div
+          class="flex justify-center"
+        >
+          <div
+            class="relative w-80 h-80 md:w-96 md:h-96 lg:w-[26rem] lg:h-[26rem]"
+          >
+            <div
+              aria-hidden="true"
+              class="absolute inset-0 rounded-full"
+              style="background: radial-gradient(60% 60% at 50% 50%, rgba(139,92,246,0.35) 0%, rgba(99,102,241,0.22) 35%, rgba(0,0,0,0) 70%); filter: blur(10px);"
+            />
+            <div
+              class="relative w-full h-full rounded-full border border-white/10 shadow-2xl overflow-hidden ring-1 ring-white/10"
+            >
+              <img
+                alt="Christian Oscar Papa - Frontend Developer"
+                class="object-cover"
+                src="/Fotocv.png"
+                style="object-position: 50% 20%;"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;
