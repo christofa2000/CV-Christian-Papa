@@ -27,7 +27,7 @@ const contactLinks = [
 
 export default function Contact() {
   return (
-    <section id="contacto" className="py-24 bg-neutral-900/50">
+    <section id="contacto" className="py-20 md:py-24 bg-neutral-900/50">
       <div className="container mx-auto px-4">
         <motion.div
           initial="initial"
@@ -38,13 +38,13 @@ export default function Contact() {
         >
           <motion.h2
             variants={fadeInUp}
-            className="text-4xl md:text-5xl font-semibold text-neutral-200 mb-6"
+            className="text-5xl md:text-6xl lg:text-7xl font-semibold text-neutral-200 mb-6"
           >
             Contacto
           </motion.h2>
           <motion.p
             variants={fadeInUp}
-            className="text-xl text-neutral-400 mb-12"
+            className="text-xl md:text-2xl lg:text-3xl text-neutral-400 mb-12"
           >
             ¿Tienes un proyecto en mente? Me encantaría escuchar sobre él.
           </motion.p>

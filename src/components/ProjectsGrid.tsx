@@ -20,7 +20,7 @@ const projects: Project[] = [
     description:
       "Aplicación web que consume tres APIs diferentes para ofrecer una experiencia interactiva y educativa. Combina tecnología moderna y curiosidad histórica, permitiendo explorar datos, imágenes y eventos de distintas épocas a través de una interfaz intuitiva y dinámica.",
     image: "/api.png",
-    demoUrl: "https://museo-del-tiempo.vercel.app/",
+    demoUrl: "https://api-museo-del-tiempo.vercel.app/",
     repoUrl: "https://github.com/christofa2000/API-Museo-del-tiempo",
     technologies: [
       "Next.js",
@@ -66,16 +66,6 @@ const projects: Project[] = [
       "PostgreSQL",
     ],
   },
-  {
-    id: "portfolio-website",
-    title: "Portfolio Website",
-    description:
-      "Sitio web personal con animaciones fluidas, modo oscuro y optimización SEO avanzada. Diseño responsive con Framer Motion y optimizado para performance y accesibilidad.",
-    image: "/placeholder-project-3.jpg",
-    demoUrl: "https://christianpapa.dev",
-    repoUrl: "https://github.com/christianpapa/portfolio",
-    technologies: ["Next.js", "Framer Motion", "Tailwind CSS", "TypeScript"],
-  },
 ];
 
 export default function ProjectsGrid() {
@@ -85,7 +75,7 @@ export default function ProjectsGrid() {
   };
 
   return (
-    <section id="proyectos" className="py-32 md:py-36 bg-neutral-900/50">
+    <section id="proyectos" className="py-20 md:py-24 bg-neutral-900/50">
       <div className="container mx-auto px-4">
         {/* Encabezado */}
         <motion.div
@@ -97,13 +87,13 @@ export default function ProjectsGrid() {
         >
           <motion.h2
             variants={fadeOnly}
-            className="text-4xl md:text-5xl font-semibold text-neutral-200 mb-6"
+            className="text-5xl md:text-6xl lg:text-7xl font-semibold text-neutral-200 mb-6"
           >
             Proyectos
           </motion.h2>
           <motion.p
             variants={fadeOnly}
-            className="text-xl text-neutral-400 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl lg:text-3xl text-neutral-400 max-w-4xl mx-auto"
           >
             Una selección de proyectos que demuestran mi experiencia en
             desarrollo frontend moderno y mejores prácticas.
@@ -111,7 +101,7 @@ export default function ProjectsGrid() {
         </motion.div>
 
         {/* Lista de proyectos con más espacio y alternado */}
-        <div className="space-y-32 md:space-y-40">
+        <div className="space-y-20 md:space-y-24">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}

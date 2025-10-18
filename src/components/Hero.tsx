@@ -35,7 +35,7 @@ export default function Hero() {
 
   return (
     <motion.section
-      className="min-h-[92vh] flex items-center py-24"
+      className="min-h-[85vh] flex items-center py-16"
       initial="hidden"
       whileInView="show"
       viewport={{ once: false, amount: 0.3 }}
@@ -47,13 +47,13 @@ export default function Hero() {
             variants={leftEnter}
             className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6"
           >
-            <div className="space-y-3 max-w-2xl">
-              <h1 className="text-4xl md:text-6xl font-semibold text-neutral-200 leading-tight">
+            <div className="space-y-4 max-w-2xl">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold text-neutral-200 leading-tight">
                 Hola, soy{" "}
                 <span className="text-violet-400">Christian Oscar Papa</span>
               </h1>
 
-              <p className="text-lg md:text-xl text-neutral-400 leading-relaxed">
+              <p className="text-xl md:text-2xl lg:text-3xl text-neutral-400 leading-relaxed">
                 Desarrollador Frontend especializado en React, Next.js y
                 TypeScript. Creando experiencias web modernas, accesibles y
                 performantes.
