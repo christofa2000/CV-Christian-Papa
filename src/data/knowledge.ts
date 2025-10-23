@@ -74,8 +74,3 @@ const knowledge: KnowledgeData = [
 ];
 
 export default knowledge;
-
-
-
-
-

@@ -17,8 +17,3 @@ export type KnowledgeData = {
 
 declare const knowledge: KnowledgeData;
 export default knowledge;
-
-
-
-
-
