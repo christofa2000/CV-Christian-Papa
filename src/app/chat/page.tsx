@@ -26,6 +26,7 @@ export default function Chat() {
       console.log("Index ready!");
     } catch (e) {
       console.error("Error initializing index:", e);
+      setError(e instanceof Error ? e.message : "Error desconocido");
       setReady(false);
     } finally {
       booting.current = false;
@@ -53,9 +54,11 @@ export default function Chat() {
   }, [initEngine]);
 
   // Función para generar respuesta inteligente basada en contexto
-  function generateResponse(query: string, results: any[]): string {
-    // eslint-disable-line @typescript-eslint/no-explicit-any
-    if (results.length === 0) {
+  function generateResponse(
+    query: string,
+    results: Array<{ text: string; id: string }>
+  ): string {
+    if (!results || results.length === 0) {
       return "No encontré información relevante en mis fuentes locales.";
     }
 
@@ -74,7 +77,14 @@ export default function Chat() {
     }
 
     // Construir respuesta contextual
-    const context = results.map((r, i) => `${i + 1}. ${r.text}`).join("\n\n");
+    const context = results
+      .filter((r) => r && r.text && r.text.trim())
+      .map((r, i) => `${i + 1}. ${r.text.trim()}`)
+      .join("\n\n");
+
+    if (!context) {
+      return "No encontré información relevante en mis fuentes locales.";
+    }
 
     let response = "";
 
@@ -99,6 +109,8 @@ export default function Chat() {
   }
 
   async function ask(input: string) {
+    if (!input || !input.trim()) return;
+
     setLoading(true);
     setError(null);
 
@@ -108,13 +120,13 @@ export default function Chat() {
         await initEngine();
       }
 
-      const results = await retrieve(input, 4);
-      const response = generateResponse(input, results);
+      const results = await retrieve(input.trim(), 4);
+      const response = generateResponse(input.trim(), results);
       const text = guardAnswer(response);
 
       setMessages((m) => [
         ...m,
-        { role: "user", content: input },
+        { role: "user", content: input.trim() },
         { role: "assistant", content: text },
       ]);
     } catch (err) {
@@ -170,8 +182,10 @@ export default function Chat() {
           const form = e.currentTarget as HTMLFormElement;
           const fd = new FormData(form);
           const q = String(fd.get("q") || "").trim();
-          if (q && !loading) await ask(q);
-          if (form) form.reset();
+          if (q && !loading) {
+            await ask(q);
+            form.reset();
+          }
         }}
       >
         <input

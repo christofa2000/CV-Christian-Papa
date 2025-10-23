@@ -3,7 +3,7 @@
 import knowledge from "@/data/knowledge.json";
 import { expand } from "@/lib/chunker";
 import { buildIndex, guardAnswer, retrieve } from "@/lib/rag.simple";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -12,18 +12,24 @@ export default function HybridChat() {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [indexReady, setIndexReady] = useState(false);
+  const booting = useRef(false);
 
   const initIndex = useCallback(async () => {
+    if (booting.current) return;
+    booting.current = true;
+    setError(null);
+
     try {
       console.log("Building knowledge index...");
       await buildIndex(expand(knowledge as any)); // eslint-disable-line @typescript-eslint/no-explicit-any
-      setIndexReady(true);
       setReady(true);
       console.log("Index ready!");
     } catch (err) {
       console.error("Error initializing index:", err);
       setError(err instanceof Error ? err.message : "Error desconocido");
+      setReady(false);
+    } finally {
+      booting.current = false;
     }
   }, []);
 
@@ -32,7 +38,10 @@ export default function HybridChat() {
   }, [initIndex]);
 
   // Función para generar respuesta inteligente basada en contexto
-  function generateResponse(query: string, results: any[]): string {
+  function generateResponse(
+    query: string,
+    results: Array<{ text: string; id: string }>
+  ): string {
     if (results.length === 0) {
       return "No encontré información relevante en mis fuentes locales.";
     }
@@ -79,15 +88,15 @@ export default function HybridChat() {
   }
 
   async function ask(input: string) {
-    if (!indexReady) {
-      await initIndex();
-      if (!indexReady) return;
-    }
-
     setLoading(true);
     setError(null);
 
     try {
+      // Asegurar que el índice esté listo
+      if (!ready) {
+        await initIndex();
+      }
+
       const results = await retrieve(input, 4);
       const response = generateResponse(input, results);
       const text = guardAnswer(response);
@@ -151,13 +160,13 @@ export default function HybridChat() {
       >
         <input
           name="q"
-          disabled={loading || !ready}
+          disabled={loading}
           className="flex-1 rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 ring-offset-2 disabled:opacity-50"
           placeholder="Pregúntame sobre Christian, sus proyectos, experiencia, etc."
           aria-label="Entrada para preguntas"
         />
         <button
-          disabled={loading || !ready}
+          disabled={loading}
           className="rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 ring-offset-2 disabled:opacity-50"
         >
           {loading ? "..." : "Enviar"}
@@ -170,11 +179,11 @@ export default function HybridChat() {
           analiza el tipo de pregunta y genera respuestas contextuales.
         </p>
         <p>
-          <strong>Preguntas sugeridas:</strong> "¿Quién es Christian?", "¿Qué
-          tecnologías usa?", "¿Cómo trabaja?", "¿Dónde está ubicado?"
+          <strong>Preguntas sugeridas:</strong> &ldquo;¿Quién es
+          Christian?&rdquo;, &ldquo;¿Qué tecnologías usa?&rdquo;, &ldquo;¿Cómo
+          trabaja?&rdquo;, &ldquo;¿Dónde está ubicado?&rdquo;
         </p>
       </div>
     </div>
   );
 }
-

@@ -2,14 +2,14 @@
 
 import localforage from "localforage";
 
-let pipelineRef: any = null; // eslint-disable-line @typescript-eslint/no-explicit-any
+let pipelineRef: unknown = null;
 
 type Doc = { id: string; text: string };
 type VecDoc = { id: string; text: string; vector: Float32Array };
 
 const store = localforage.createInstance({ name: "cvchris-rag" });
 
-async function loadPipeline() {
+async function loadPipeline(): Promise<unknown> {
   if (pipelineRef) return pipelineRef;
 
   // Verificar que estamos en el cliente
@@ -20,7 +20,9 @@ async function loadPipeline() {
   try {
     // Configurar el entorno para @xenova/transformers
     if (typeof process === "undefined") {
-      (globalThis as any).process = { env: {} };
+      (globalThis as { process?: { env: Record<string, unknown> } }).process = {
+        env: {},
+      };
     }
 
     // Importación dinámica con configuración específica
@@ -45,14 +47,35 @@ async function loadPipeline() {
   }
 }
 
-export async function buildIndex(docs: Doc[]) {
+export async function buildIndex(docs: Doc[]): Promise<void> {
+  if (!docs || !Array.isArray(docs) || docs.length === 0) {
+    throw new Error("Invalid documents array provided");
+  }
+
   try {
-    const embedder = await loadPipeline();
+    const embedder = (await loadPipeline()) as (
+      text: string,
+      options: { pooling: string; normalize: boolean }
+    ) => Promise<{ data: Float32Array }>;
     const out: VecDoc[] = [];
 
     for (const d of docs) {
+      if (!d || !d.id || !d.text) {
+        console.warn("Skipping invalid document:", d);
+        continue;
+      }
+
       const emb = await embedder(d.text, { pooling: "mean", normalize: true });
+      if (!emb || !emb.data) {
+        console.warn("Skipping document with invalid embedding:", d.id);
+        continue;
+      }
+
       out.push({ id: d.id, text: d.text, vector: new Float32Array(emb.data) });
+    }
+
+    if (out.length === 0) {
+      throw new Error("No valid documents could be processed");
     }
 
     await store.setItem("index", out);
@@ -63,16 +86,43 @@ export async function buildIndex(docs: Doc[]) {
   }
 }
 
-function cosine(a: Float32Array, b: Float32Array) {
+function cosine(a: Float32Array, b: Float32Array): number {
   let s = 0;
   for (let i = 0; i < a.length; i++) s += a[i] * b[i];
   return s;
 }
 
-export async function retrieve(query: string, k = 5) {
+export async function retrieve(
+  query: string,
+  k = 5
+): Promise<
+  Array<{ id: string; text: string; vector: Float32Array; score: number }>
+> {
+  if (!query || typeof query !== "string" || !query.trim()) {
+    console.warn("Invalid query provided");
+    return [];
+  }
+
+  if (k <= 0) {
+    console.warn("Invalid k value provided");
+    return [];
+  }
+
   try {
-    const embedder = await loadPipeline();
-    const q = await embedder(query, { pooling: "mean", normalize: true });
+    const embedder = (await loadPipeline()) as (
+      text: string,
+      options: { pooling: string; normalize: boolean }
+    ) => Promise<{ data: Float32Array }>;
+    const q = await embedder(query.trim(), {
+      pooling: "mean",
+      normalize: true,
+    });
+
+    if (!q || !q.data) {
+      console.warn("Invalid embedding result");
+      return [];
+    }
+
     const qv = new Float32Array(q.data);
     const index = (await store.getItem<VecDoc[]>("index")) || [];
 
@@ -82,6 +132,7 @@ export async function retrieve(query: string, k = 5) {
     }
 
     return index
+      .filter((d) => d && d.vector && d.vector.length > 0)
       .map((d) => ({ ...d, score: cosine(qv, d.vector) }))
       .sort((a, b) => b.score - a.score)
       .slice(0, k);
@@ -91,7 +142,7 @@ export async function retrieve(query: string, k = 5) {
   }
 }
 
-export function guardAnswer(text: string) {
+export function guardAnswer(text: string): string {
   if (!text || typeof text !== "string") {
     return "No está en mis fuentes locales.";
   }

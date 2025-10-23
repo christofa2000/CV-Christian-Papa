@@ -1,0 +1,75 @@
+﻿import { generateResponse, searchKnowledge } from "@/lib/rag-simple-server";
+import { NextRequest, NextResponse } from "next/server";
+
+// Asegurar runtime Node.js para lectura de archivos
+export const runtime = "nodejs";
+
+interface ChatPayload {
+  message: string;
+}
+
+export async function POST(req: NextRequest): Promise<NextResponse> {
+  try {
+    console.log("ðŸ“¥ Request recibido en /api/chat-simple");
+
+    // Validar que el request tenga body
+    if (!req.body) {
+      console.error("âŒ Request sin body");
+      return NextResponse.json({ error: "Request sin body" }, { status: 400 });
+    }
+
+    // Parsear JSON una sola vez
+    let body: ChatPayload;
+    try {
+      body = await req.json();
+      console.log("ðŸ“‹ Body parseado:", {
+        message: body.message?.substring(0, 50) + "...",
+      });
+    } catch (parseError) {
+      console.error("âŒ Error parseando JSON:", parseError);
+      return NextResponse.json({ error: "JSON invÃ¡lido" }, { status: 400 });
+    }
+
+    const { message } = body;
+
+    if (!message || typeof message !== "string" || !message.trim()) {
+      console.error("âŒ Message invÃ¡lido:", { message, type: typeof message });
+      return NextResponse.json(
+        { error: "Falta 'message' vÃ¡lido." },
+        { status: 400 }
+      );
+    }
+
+    console.log("ðŸ” Buscando en base de conocimiento para:", message);
+
+    // Buscar documentos relevantes
+    const results = searchKnowledge(message, 5);
+    console.log(`ðŸ“Š Encontrados ${results.length} documentos relevantes`);
+
+    // Generar respuesta contextual
+    const answer = generateResponse(message, results);
+    console.log("âœ… Respuesta generada exitosamente");
+
+    return NextResponse.json({ answer });
+  } catch (error) {
+    console.error("âŒ Error en API chat-simple:", error);
+
+    // Devolver solo strings/primitivos para evitar problemas de serializaciÃ³n
+    const errorMessage =
+      error instanceof Error ? error.message : "Error desconocido";
+    const errorStack = error instanceof Error ? error.stack : undefined;
+
+    console.error("âŒ Error details:", {
+      message: errorMessage,
+      stack: errorStack,
+    });
+
+    return NextResponse.json(
+      {
+        error: "Error interno del servidor",
+        details: errorMessage,
+      },
+      { status: 500 }
+    );
+  }
+}
