@@ -63,7 +63,93 @@ body {
     transform: rotate(360deg);
   }
 }
-
 .animate-spin-slow {
   animation: spin-slow 60s linear infinite;
+}
+
+/* ---------------------------
+   Configuración Chatbot
+--------------------------- */
+:root {
+  /* Chat tokens */
+  --chat-overlay-bg: rgba(0, 0, 0, 0.55);
+  --chat-surface: #0b0b17;
+  --chat-border: rgba(255, 255, 255, 0.08);
+  --chat-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --chat-overlay-bg: rgba(0, 0, 0, 0.35);
+    --chat-surface: #ffffff;
+    --chat-border: rgba(0, 0, 0, 0.08);
+    --chat-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Z-index consistentes para el modal de chat */
+.chat-overlay {
+  z-index: 60;
+}
+.chat-content {
+  z-index: 61;
+}
+
+/* Reduce motion global */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Transiciones del chat (suaves y accesibles) */
+.chat-overlay {
+  transition: opacity 220ms ease;
+  background-color: var(--chat-overlay-bg);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.chat-content {
+  background: var(--chat-surface);
+  border: 1px solid var(--chat-border);
+  box-shadow: var(--chat-shadow);
+  transition: transform 220ms ease, opacity 220ms ease, box-shadow 220ms ease;
+  will-change: transform, opacity;
+  outline: none;
+}
+
+/* Estados (montado controlado por data-attr para animar) */
+[data-chat-state="closed"] .chat-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+[data-chat-state="closed"] .chat-content {
+  opacity: 0;
+  transform: translateY(10px) scale(0.995);
+}
+
+[data-chat-state="open"] .chat-overlay {
+  opacity: 1;
+}
+[data-chat-state="open"] .chat-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Respeto de reduce-motion */
+@media (prefers-reduced-motion: reduce) {
+  .chat-overlay,
+  .chat-content {
+    transition-duration: 1ms !important;
+  }
+}
+
+/* Ocultar botón de chat dentro del iframe */
+iframe[src*="/chat"] ~ * [data-chat-button],
+iframe[src*="/chat"] + * [data-chat-button] {
+  display: none !important;
 }

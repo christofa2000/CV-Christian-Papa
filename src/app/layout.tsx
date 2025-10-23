@@ -1,3 +1,4 @@
+import ChatBubble from "@/components/ChatBubble";
 import IntroGate from "@/components/IntroGate";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -111,6 +112,8 @@ export default function RootLayout({
             {children}
           </main>
         </IntroGate>
+
+        <ChatBubble />
       </body>
     </html>
   );
