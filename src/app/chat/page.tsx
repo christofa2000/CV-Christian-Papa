@@ -305,7 +305,7 @@ export default function Chat() {
             key={suggestion}
             onClick={() => ask(suggestion)}
             disabled={loading}
-            className="text-sm text-indigo-600 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 disabled:opacity-50 dark:text-indigo-300"
+            className="text-sm text-indigo-100 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 disabled:opacity-50 dark:text-indigo-300"
           >
             {suggestion}
           </button>
@@ -316,7 +316,7 @@ export default function Chat() {
           <button
             onClick={() => ask(lastQuery, true)}
             disabled={loading}
-            className="text-sm text-indigo-600 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 disabled:opacity-50 dark:text-indigo-300"
+            className="text-sm text-indigo-100 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 disabled:opacity-50 dark:text-indigo-300"
           >
             Ver más
           </button>

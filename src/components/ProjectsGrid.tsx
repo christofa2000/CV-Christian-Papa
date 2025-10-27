@@ -31,13 +31,13 @@ const projects: Project[] = [
     ],
   },
   {
-    id: "motorlider",
-    title: "Motorlider",
+    id: "zapatillas",
+    title: "zapatillas",
     description:
       "Plataforma para casa de repuestos: catálogo completo de productos, gestión de stock, ventas y pedidos en línea. Incluye panel administrativo para cargar repuestos con imágenes, controlar inventario y atender consultas de clientes.",
-    image: "/motorlider.png",
-    demoUrl: "https://motorlider.netlify.app/",
-    repoUrl: "https://github.com/christofa2000/motorlider-fullstack",
+    image: "/ecommerse.png",
+    demoUrl: "https://ecommerse-zapas.vercel.app/es/",
+    repoUrl: "https://github.com/christofa2000/Ecommerse-zapas",
     technologies: [
       "Next.js",
       "TypeScript",

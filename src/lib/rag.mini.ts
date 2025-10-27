@@ -1,5 +1,6 @@
 import MiniSearch from "minisearch";
 
+/* ===================== Tipos públicos ===================== */
 export type KnowledgeItem = {
   id: string;
   text: string;
@@ -13,8 +14,43 @@ export type RetrieveResult = {
   score?: number;
 };
 
-// Diccionario de sinónimos/expansiones
-const SYN = {
+/* ===================== Utils de normalización ===================== */
+const STOP_ES = new Set([
+  "de",
+  "la",
+  "el",
+  "y",
+  "en",
+  "a",
+  "los",
+  "las",
+  "un",
+  "una",
+  "para",
+  "con",
+  "por",
+  "del",
+  "al",
+  "lo",
+  "es",
+  "su",
+  "sus",
+]);
+
+export function stripAccents(s: string): string {
+  return s.normalize("NFD").replace(/\p{Diacritic}/gu, "");
+}
+
+function tokenizeBasic(text: string): string[] {
+  return stripAccents(text.toLowerCase())
+    .trim()
+    .split(/\s+/)
+    .filter((t) => t && !STOP_ES.has(t));
+}
+
+/* ===================== Sinónimos / expansión ===================== */
+const SYN: Record<string, string[]> = {
+  // ES
   desafios: [
     "desafíos",
     "desafio",
@@ -23,214 +59,274 @@ const SYN = {
     "resiliencia",
     "aconcagua",
   ],
-  tecnologias: ["stack", "tech", "herramientas", "frameworks"],
+  tecnologias: ["stack", "tech", "herramientas", "frameworks", "librerias"],
   trabajo: ["empleo", "puesto", "actual", "actualmente"],
-} as const;
+  contacto: ["email", "correo", "linkedin", "github"],
+  rendimiento: [
+    "performance",
+    "lighthouse",
+    "web",
+    "optimización",
+    "velocidad",
+  ],
+  accesibilidad: ["a11y", "wcag", "contraste", "teclado", "aria"],
+  pruebas: ["testing", "qa", "unitarias", "vitest", "jest", "rtl"],
+  // EN básicos (por visitantes en inglés)
+  "tech stack": ["stack", "technologies", "frameworks"],
+  "current job": ["job", "role", "position", "now"],
+  achievements: ["logros", "results", "impact"],
+};
 
-// Índice singleton
-let searchIndex: MiniSearch<KnowledgeItem> | null = null;
+function expandQuery(q: string): string {
+  const normalized = stripAccents(q.toLowerCase()).trim();
+  if (!normalized) return "";
 
-/**
- * Construye el índice de búsqueda con MiniSearch
- * Idempotente: si ya existe, lo reutiliza
- */
-export function buildIndex(items: KnowledgeItem[]): void {
-  if (searchIndex) {
-    console.log("Index already exists, reusing...");
-    return;
+  const bag = new Set<string>(tokenizeBasic(normalized));
+
+  // Coincidencia por claves y por sinónimos
+  for (const [key, syns] of Object.entries(SYN)) {
+    const keyTokens = tokenizeBasic(key).join(" ");
+    if (
+      normalized.includes(key) ||
+      keyTokens.split(" ").every((t) => bag.has(t))
+    ) {
+      syns.forEach((s) => tokenizeBasic(s).forEach((t) => bag.add(t)));
+    }
+    for (const s of syns) {
+      const st = tokenizeBasic(s);
+      if (st.some((t) => bag.has(t))) {
+        tokenizeBasic(key).forEach((t) => bag.add(t));
+        st.forEach((t) => bag.add(t));
+      }
+    }
   }
 
-  if (!items || items.length === 0) {
+  return [...bag].join(" ");
+}
+
+/* ===================== Índice + cache local ===================== */
+let searchIndex: MiniSearch<KnowledgeItem> | null = null;
+
+const INDEX_VERSION = "kb-v2"; // bump si cambiás schema o tokenización
+const CACHE_KEY = `minisearch-index-${INDEX_VERSION}`;
+const SIG_KEY = `minisearch-sig-${INDEX_VERSION}`;
+
+function itemsSignature(items: KnowledgeItem[]): string {
+  // Firma liviana: cantidad + ids concatenados
+  return `${items.length}:${items.map((i) => i.id).join("|")}`;
+}
+
+function tryLoadFromCache(expectedSig: string): boolean {
+  if (typeof window === "undefined" || !("localStorage" in window))
+    return false;
+  try {
+    const storedSig = localStorage.getItem(SIG_KEY);
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw || storedSig !== expectedSig) return false;
+    const json = JSON.parse(raw);
+    searchIndex = MiniSearch.loadJSON(json, {
+      fields: ["text", "tags", "keywords"],
+      storeFields: ["id", "text"],
+      tokenize: (t: string) => tokenizeBasic(t),
+      searchOptions: {
+        boost: { text: 3, keywords: 2, tags: 1 },
+        fuzzy: 0.2,
+        prefix: true,
+      },
+    });
+    return !!searchIndex;
+  } catch {
+    return false;
+  }
+}
+
+function saveCache(sig: string) {
+  if (
+    typeof window === "undefined" ||
+    !("localStorage" in window) ||
+    !searchIndex
+  )
+    return;
+  try {
+    const json = searchIndex.toJSON();
+    localStorage.setItem(CACHE_KEY, JSON.stringify(json));
+    localStorage.setItem(SIG_KEY, sig);
+  } catch {
+    /* ignore quota errors */
+  }
+}
+
+/**
+ * Construye el índice (idempotente). Usa cache si coincide la firma.
+ */
+export function buildIndex(items: KnowledgeItem[]): void {
+  if (searchIndex) return;
+  if (!Array.isArray(items) || items.length === 0) {
     throw new Error("No items provided to build index");
   }
 
-  console.log(`Building MiniSearch index with ${items.length} items...`);
+  const sig = itemsSignature(items);
+  if (tryLoadFromCache(sig)) return;
 
-  searchIndex = new MiniSearch({
+  searchIndex = new MiniSearch<KnowledgeItem>({
     fields: ["text", "tags", "keywords"],
     storeFields: ["id", "text"],
+    tokenize: (t: string) => tokenizeBasic(t),
     searchOptions: {
       boost: { text: 3, keywords: 2, tags: 1 },
       fuzzy: 0.2,
       prefix: true,
     },
-    tokenize: (text: string) => {
-      return text
-        .toLowerCase()
-        .trim()
-        .split(/\s+/)
-        .filter((token) => token.length > 0);
-    },
   });
 
-  // Indexar los elementos
-  searchIndex.addAll(items);
+  searchIndex.addAll(
+    items.map((i) => ({
+      ...i,
+      // Garantizar campos presentes
+      tags: Array.isArray(i.tags) ? i.tags : [],
+      keywords: Array.isArray(i.keywords) ? i.keywords : [],
+      text: String(i.text ?? ""),
+    }))
+  );
 
-  console.log(`Index built successfully with ${items.length} items`);
+  saveCache(sig);
 }
 
-/**
- * Expande la consulta con sinónimos
- */
-function expandQuery(q: string): string {
-  if (!q || typeof q !== "string") return "";
+/* ===================== Priorización por intención ===================== */
+function prioritizeByIntent(
+  query: string,
+  hits: RetrieveResult[]
+): RetrieveResult[] {
+  const q = stripAccents(query.toLowerCase());
 
-  // Normalizar a minúsculas y quitar tildes
-  const normalized = q
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim();
-
-  if (!normalized) return q;
-
-  // Buscar sinónimos y expandir
-  const expandedTerms = [normalized];
-
-  for (const [key, synonyms] of Object.entries(SYN)) {
-    if (normalized.includes(key)) {
-      expandedTerms.push(...synonyms);
-    }
-    // También buscar si algún sinónimo está en la consulta
-    for (const synonym of synonyms) {
-      if (normalized.includes(synonym)) {
-        expandedTerms.push(key, ...synonyms);
-        break;
-      }
+  // Desafíos → motivacion primero
+  if (
+    /\b(desafios|desafios|desafio|retos|superacion|resiliencia|aconcagua)\b/.test(
+      q
+    )
+  ) {
+    const idx = hits.findIndex((h) => h.id === "motivacion");
+    if (idx > 0) {
+      const [m] = hits.splice(idx, 1);
+      hits.unshift(m);
     }
   }
 
-  // Unir términos únicos
-  return [...new Set(expandedTerms)].join(" ");
+  // Stack → id "stack"
+  if (/\b(stack|tecnolog|framework|herramientas|tech)\b/.test(q)) {
+    const idx = hits.findIndex((h) => h.id === "stack");
+    if (idx > 0) {
+      const [m] = hits.splice(idx, 1);
+      hits.unshift(m);
+    }
+  }
+
+  // Trabajo actual → experiencia:santander preferido
+  if (
+    /\b(trabajo|empleo|puesto|actual|actualmente|job|role|position)\b/.test(q)
+  ) {
+    const idx = hits.findIndex((h) => h.id === "experiencia:santander");
+    if (idx > 0) {
+      const [m] = hits.splice(idx, 1);
+      hits.unshift(m);
+    }
+  }
+
+  // Contacto
+  if (/\b(contacto|email|correo|linkedin|github)\b/.test(q)) {
+    const idx = hits.findIndex((h) => h.id === "contacto");
+    if (idx > 0) {
+      const [m] = hits.splice(idx, 1);
+      hits.unshift(m);
+    }
+  }
+
+  return hits;
 }
 
-/**
- * Busca documentos relevantes usando MiniSearch
- */
+/* ===================== Búsqueda ===================== */
 export function retrieve(query: string, k = 4): RetrieveResult[] {
   if (!searchIndex) {
     console.warn("Index not built yet");
     return [];
   }
+  const raw = String(query ?? "").trim();
+  if (!raw || k <= 0) return [];
 
-  if (!query || typeof query !== "string" || !query.trim()) {
-    console.warn("Empty query provided");
-    return [];
-  }
-
-  if (k <= 0) {
-    console.warn("Invalid k value");
-    return [];
-  }
+  const expanded = expandQuery(raw);
+  if (!expanded) return [];
 
   try {
-    // Expandir consulta con sinónimos
-    const expandedQuery = expandQuery(query.trim());
-
-    const results = searchIndex.search(expandedQuery, {
+    const results = searchIndex.search(expanded, {
       boost: { text: 3, keywords: 2, tags: 1 },
       fuzzy: 0.2,
       prefix: true,
     });
 
-    const mappedResults = [
-      ...results.map((result) => ({
-        id: result.id,
-        text: result.text,
-        score: result.score,
-      })),
-    ];
+    // Mapear y deduplicar por id (por si MiniSearch devuelve duplicados en ciertos merges)
+    const mapped = results.map((r) => ({
+      id: String((r as unknown as { id: string }).id),
+      text: String((r as unknown as { text: string }).text ?? ""),
+      score:
+        typeof (r as unknown as { score?: number }).score === "number"
+          ? (r as unknown as { score: number }).score
+          : undefined,
+    }));
 
-    // Post-procesado: priorizar "motivacion" para consultas de desafíos
-    const desafiosTerms = [
-      "desafios",
-      "desafíos",
-      "desafio",
-      "retos",
-      "superacion",
-    ];
-    const queryLower = query
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-
-    if (desafiosTerms.some((term) => queryLower.includes(term))) {
-      const motivacionIndex = mappedResults.findIndex(
-        (r) => r.id === "motivacion"
-      );
-      if (motivacionIndex > 0) {
-        // Mover motivacion al primer lugar
-        const motivacionResult = mappedResults.splice(motivacionIndex, 1)[0];
-        mappedResults.unshift(motivacionResult);
+    const unique: RetrieveResult[] = [];
+    const seen = new Set<string>();
+    for (const m of mapped) {
+      if (!seen.has(m.id)) {
+        unique.push(m);
+        seen.add(m.id);
       }
     }
 
-    return mappedResults.slice(0, k);
+    const prioritized = prioritizeByIntent(raw, unique);
+    return prioritized.slice(0, k);
   } catch (error) {
     console.error("Error during search:", error);
     return [];
   }
 }
 
-/**
- * Verifica si el índice está construido
- */
+/* ===================== Estado del índice ===================== */
 export function ready(): boolean {
   return searchIndex !== null;
 }
 
-/**
- * Función de utilidad para resumir texto en oraciones completas
- */
+/* ===================== Resúmenes / truncados ===================== */
+/** Devuelve 1–2 oraciones completas (máx `maxChars`). */
 export function summarizeSentences(text: string, maxChars = 240): string {
-  if (!text || typeof text !== "string") {
-    return "";
-  }
+  const clean = String(text ?? "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!clean) return "";
 
-  // Dividir por oraciones usando regex que preserva los delimitadores
-  const sentences = text
-    .split(/(?<=[.!?])\s+/)
-    .filter((s) => s.trim().length > 0);
+  const sentences = clean.split(/(?<=[.!?])\s+/).filter(Boolean);
+  if (sentences.length === 0) return truncateByWords(clean, maxChars);
 
-  if (sentences.length === 0) {
-    return truncateByWords(text, maxChars);
-  }
-
-  let result = "";
-  let charCount = 0;
-
-  for (const sentence of sentences) {
-    const trimmedSentence = sentence.trim();
-    if (charCount + trimmedSentence.length <= maxChars) {
-      result += (result ? " " : "") + trimmedSentence;
-      charCount += trimmedSentence.length + (result ? 1 : 0);
-
-      // Limitar a máximo 2 oraciones
-      if (result.split(/[.!?]/).length >= 2) {
-        break;
-      }
+  let out = "";
+  let count = 0;
+  for (const s of sentences) {
+    const proposed = out ? `${out} ${s}` : s;
+    if (proposed.length <= maxChars && count < 2) {
+      out = proposed;
+      count += 1;
+      if (count >= 2) break;
     } else {
       break;
     }
   }
-
-  return result || truncateByWords(text, maxChars);
+  return out || truncateByWords(clean, maxChars);
 }
 
-/**
- * Recorta texto por palabras sin partirlas
- */
+/** Recorta por palabras sin partirlas; añade “…” si recorta. */
 export function truncateByWords(text: string, maxChars: number): string {
-  if (!text || typeof text !== "string" || text.length <= maxChars) {
-    return text;
-  }
-
-  const truncated = text.slice(0, maxChars);
-  const lastSpace = truncated.lastIndexOf(" ");
-
-  if (lastSpace > maxChars * 0.8) {
-    return truncated.slice(0, lastSpace) + "…";
-  }
-
-  return truncated + "…";
+  const s = String(text ?? "");
+  if (s.length <= maxChars) return s;
+  const cut = s.slice(0, maxChars);
+  const lastSpace = cut.lastIndexOf(" ");
+  const sliced = lastSpace > maxChars * 0.6 ? cut.slice(0, lastSpace) : cut;
+  return `${sliced}…`;
 }

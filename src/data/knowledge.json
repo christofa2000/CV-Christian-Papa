@@ -220,5 +220,82 @@
       "frontend senior"
     ],
     "text": "❓ Q: ¿Cuál es tu especialidad? A: Desarrollo Frontend y Mobile con React, React Native y TypeScript.\nQ: ¿Tenés experiencia en apps móviles? A: Sí, desarrollé proyectos con React Native y Expo optimizados para Android e iOS.\nQ: ¿Qué tipo de proyectos te interesan? A: Web o móviles con foco en UI moderna, rendimiento y accesibilidad.\nQ: ¿Estás abierto a nuevas oportunidades? A: Sí, estoy disponible para posiciones remotas como Frontend o React Native Developer Senior.\nQ: ¿Qué te diferencia? A: Mi equilibrio entre código limpio, diseño artístico y enfoque humano en la experiencia de usuario."
+  },
+  {
+    "id": "proyecto:checkout-performance",
+    "tags": ["proyectos", "performance", "web"],
+    "keywords": [
+      "optimización",
+      "rendimiento",
+      "lighthouse",
+      "web vitals",
+      "tti",
+      "ttfb",
+      "core web vitals",
+      "mejora de velocidad",
+      "lazy loading",
+      "code splitting"
+    ],
+    "text": "🚀 Optimización de checkout en e-commerce: reducción de TTFB y mejora de Core Web Vitals. Implementé code-splitting, lazy loading de assets y memoización de componentes críticos. Resultado: +18 puntos en Lighthouse (Performance) y menor tasa de abandono en el flujo de compra."
+  },
+  {
+    "id": "proyecto:migracion-typescript",
+    "tags": ["proyectos", "typescript", "calidad"],
+    "keywords": [
+      "migración a TypeScript",
+      "tipado estricto",
+      "deuda técnica",
+      "refactor",
+      "eslint",
+      "tsconfig",
+      "mejoras de mantenibilidad"
+    ],
+    "text": "🧠 Migración progresiva a TypeScript: definí estrategia de tipado estricto, configuré ESLint/TSConfig y refactoricé módulos compartidos. Beneficios: menos errores en tiempo de ejecución, DX mejorada y base de código más mantenible."
+  },
+  {
+    "id": "metodologia:testing-ci",
+    "tags": ["metodologia", "testing", "ci"],
+    "keywords": [
+      "testing",
+      "jest",
+      "vitest",
+      "react testing library",
+      "coverage",
+      "ci/cd",
+      "github actions",
+      "pipeline",
+      "revisiones de código"
+    ],
+    "text": "🧪 Testing + CI/CD: configuración de pruebas unitarias y de integración con Jest/Vitest y React Testing Library. Integración en CI (GitHub Actions) para asegurar calidad en cada PR, coverage mínimo y checks automáticos antes de merge."
+  },
+  {
+    "id": "accesibilidad:wcag",
+    "tags": ["accesibilidad", "ux", "wcag"],
+    "keywords": [
+      "accesibilidad",
+      "a11y",
+      "wcag",
+      "contraste",
+      "lectores de pantalla",
+      "teclado",
+      "focus visible",
+      "aria"
+    ],
+    "text": "🎯 Accesibilidad (WCAG): revisión de contraste, navegación por teclado y roles ARIA. Implementé focus visible, etiquetas semánticas y mejoras para lectores de pantalla. Objetivo: interfaces inclusivas y consistentes."
+  },
+  {
+    "id": "servicios",
+    "tags": ["servicios", "oferta", "contratacion"],
+    "keywords": [
+      "servicios",
+      "consultoría",
+      "auditoría de performance",
+      "migraciones a typescript",
+      "diseño de design systems",
+      "react native",
+      "remoto",
+      "disponibilidad"
+    ],
+    "text": "🧩 Servicios: desarrollo Frontend y Mobile (React/React Native), auditorías de performance, migraciones a TypeScript, diseño de componentes/UI y accesibilidad. Modalidad 100% remota; disponibilidad para proyectos y colaboraciones."
   }
 ]
