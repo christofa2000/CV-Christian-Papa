@@ -11,9 +11,13 @@
       "especialista en React y TypeScript",
       "presentación",
       "resumen profesional",
-      "biografía"
+      "biografía",
+      "ubicación",
+      "capital federal",
+      "buenos aires",
+      "argentina"
     ],
-    "text": "👨‍💻 Christian Oscar Papa es un Desarrollador Frontend y Mobile especializado en React, React Native y TypeScript. Impulsa la creación de experiencias digitales escalables, fluidas y visualmente cuidadas, combinando la lógica del código con una visión artística del diseño. Modalidad de trabajo: 100% remota. Idiomas: español e inglés técnico. Tono del bot: profesional, empático y auténtico."
+    "text": "👨‍💻 Christian Oscar Papa es un Desarrollador Frontend y Mobile especializado en React, React Native y TypeScript. Vive en Buenos Aires, Capital Federal (Argentina). Impulsa la creación de experiencias digitales escalables, fluidas y visualmente cuidadas, combinando la lógica del código con una visión artística del diseño. Modalidad de trabajo: 100% remota. Idiomas: español e inglés técnico. Tono del bot: profesional, empático y auténtico."
   },
   {
     "id": "motivacion",
@@ -29,12 +33,9 @@
       "enfrentar retos",
       "filosofía de vida",
       "desafíos",
-      "desafios",
-      "desafio",
       "retos",
       "superación",
-      "montaña",
-      "reto personal"
+      "montaña"
     ],
     "text": "🏔️ Más allá de la tecnología, Christian enfrenta los desafíos con resiliencia y pasión. Su mayor reto personal fue escalar el Aconcagua, la montaña más alta de América, donde aprendió a superar adversidades, mantener el enfoque bajo presión y valorar cada pequeño avance. Esa experiencia lo inspira a encarar cada proyecto de desarrollo con disciplina, paciencia y una mentalidad de crecimiento continuo."
   },
@@ -175,6 +176,19 @@
     "text": "🎓 Udemy Alumni (2020–2021): formación en Desarrollo Web y Mobile con React, Next.js, React Native, TypeScript, Node.js, Redux y Zustand. Instituto Industrial Luis A. Huergo: Técnico Profesional en Computación."
   },
   {
+    "id": "formacion:psicologia-social",
+    "tags": ["formacion", "educacion", "psicologia"],
+    "keywords": [
+      "psicología social",
+      "escuela de pichon riviere",
+      "enrique pichon rivière",
+      "dinámica grupal",
+      "análisis institucional",
+      "comunicación humana"
+    ],
+    "text": "🧠 Psicólogo Social formado en la Escuela de Enrique Pichon Rivière. Esta formación me brindó una comprensión profunda de la dinámica humana, el trabajo en equipo y la comunicación efectiva. Aplico estos conocimientos en la gestión de equipos, la empatía con los usuarios y el diseño de experiencias digitales que conectan emocionalmente."
+  },
+  {
     "id": "softskills",
     "tags": ["habilidades", "blandas"],
     "keywords": [
@@ -219,7 +233,7 @@
       "oportunidades remotas",
       "frontend senior"
     ],
-    "text": "❓ Q: ¿Cuál es tu especialidad? A: Desarrollo Frontend y Mobile con React, React Native y TypeScript.\nQ: ¿Tenés experiencia en apps móviles? A: Sí, desarrollé proyectos con React Native y Expo optimizados para Android e iOS.\nQ: ¿Qué tipo de proyectos te interesan? A: Web o móviles con foco en UI moderna, rendimiento y accesibilidad.\nQ: ¿Estás abierto a nuevas oportunidades? A: Sí, estoy disponible para posiciones remotas como Frontend o React Native Developer Senior.\nQ: ¿Qué te diferencia? A: Mi equilibrio entre código limpio, diseño artístico y enfoque humano en la experiencia de usuario."
+    "text": "❓ Q: ¿Cuál es tu especialidad? A: Desarrollo Frontend y Mobile con React, React Native y TypeScript.\nQ: ¿Tenés experiencia en apps móviles? A: Sí, desarrollé proyectos con React Native y Expo optimizados para Android e iOS.\nQ: ¿Qué tipo de proyectos te interesan? A: Web o móviles con foco en UI moderna, rendimiento y accesibilidad.\nQ: ¿Qué te diferencia? A: Mi equilibrio entre código limpio, diseño artístico y enfoque humano en la experiencia de usuario."
   },
   {
     "id": "proyecto:checkout-performance",
@@ -293,9 +307,78 @@
       "migraciones a typescript",
       "diseño de design systems",
       "react native",
-      "remoto",
-      "disponibilidad"
+      "remoto"
     ],
     "text": "🧩 Servicios: desarrollo Frontend y Mobile (React/React Native), auditorías de performance, migraciones a TypeScript, diseño de componentes/UI y accesibilidad. Modalidad 100% remota; disponibilidad para proyectos y colaboraciones."
+  },
+  {
+    "id": "vision",
+    "tags": ["proposito", "vision", "futuro"],
+    "keywords": [
+      "visión profesional",
+      "propósito",
+      "objetivos futuros",
+      "crecimiento",
+      "trayectoria"
+    ],
+    "text": "🚀 Mi propósito es construir productos digitales sostenibles que unan tecnología, arte y psicología social. Busco que cada desarrollo tenga un impacto humano real, que facilite la vida de las personas y mejore la experiencia digital con empatía, belleza y funcionalidad. Mi visión a futuro es liderar proyectos que integren inteligencia artificial, accesibilidad y diseño emocional."
+  },
+  {
+    "id": "ux-design",
+    "tags": ["ux", "ui", "diseno", "figma", "accesibilidad"],
+    "keywords": [
+      "ux design",
+      "ui design",
+      "figma",
+      "diseño centrado en el usuario",
+      "accesibilidad",
+      "interfaz de usuario",
+      "motion design",
+      "tokens de diseño"
+    ],
+    "text": "🎨 En diseño aplico principios de UX/UI combinando Figma, motion natural y accesibilidad. Cada interfaz que creo busca armonía visual, claridad jerárquica y coherencia con el tono de la marca. Uso design tokens globales y prototipos interactivos para mantener consistencia y mejorar la comunicación con el equipo."
+  },
+  {
+    "id": "ai-integraciones",
+    "tags": ["inteligencia-artificial", "automatizacion", "chatbot", "ia"],
+    "keywords": [
+      "inteligencia artificial",
+      "IA",
+      "Ollama",
+      "ChromaDB",
+      "RAG",
+      "Cursor",
+      "Codex",
+      "automatización",
+      "embedding models"
+    ],
+    "text": "🤖 Experimento con inteligencia artificial aplicada al desarrollo. Implementé chatbots con RAG local usando Ollama y ChromaDB, generadores de embeddings y agentes personalizados para automatizar tareas de codificación en Cursor y Codex. Mi objetivo es integrar IA de forma ética y útil en procesos creativos y técnicos."
+  },
+  {
+    "id": "proyectos:portfolio",
+    "tags": ["proyectos", "portfolio", "showcase"],
+    "keywords": [
+      "portfolio",
+      "proyectos destacados",
+      "zapatillas ecommerce",
+      "museo del tiempo",
+      "credit cards lab",
+      "espacio de arte chivilcoy",
+      "motorlider",
+      "freelancer ledger"
+    ],
+    "text": "🧱 Proyectos destacados: 'Zapatillas' (e-commerce sostenible con Next.js, Tailwind y Zustand), 'Museo del Tiempo' (explorador de décadas con iTunes y Wikipedia APIs), 'Credit Cards Lab' (simulador bancario con React y Zustand), 'Espacio de Arte Chivilcoy' (portal cultural con foco artístico y comunitario), y 'Motorlider' (tienda de autopartes optimizada para SEO). Todos reflejan mi equilibrio entre performance, storytelling y diseño emocional."
+  },
+  {
+    "id": "instrucciones-chatbot",
+    "tags": ["faq", "ayuda", "instrucciones"],
+    "keywords": [
+      "cómo usar el chatbot",
+      "ayuda",
+      "preguntas posibles",
+      "interacción con el bot",
+      "cv chris"
+    ],
+    "text": "💬 Podés hablar conmigo como si charlaras con Christian. Preguntame sobre su experiencia, proyectos o filosofía de trabajo. Ejemplos: '¿Qué hizo en Despegar?', '¿Qué tecnologías usa en sus proyectos?', '¿Qué lo inspira como desarrollador?', o '¿Qué aprendió al escalar el Aconcagua?'. ChrisBot responde con un tono profesional, empático y humano."
   }
 ]
