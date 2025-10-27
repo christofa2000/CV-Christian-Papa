@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useAnimation, useInView } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
@@ -13,7 +13,8 @@ interface Project {
   demoUrl?: string;
   repoUrl?: string;
   technologies: string[];
-  // side?: "left" | "right"; // ← ya no lo usamos para el layout
+  highlights?: string[];
+  // side?: "left" | "right"; // â† ya no lo usamos para el layout
 }
 
 interface ProjectCardProps {
@@ -22,7 +23,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
-  // Alternado por índice: pares => imagen izquierda; impares => imagen derecha
+  // Alternado por Ã­ndice: pares => imagen izquierda; impares => imagen derecha
   const isLeft = index % 2 === 0;
 
   const rootRef = useRef<HTMLDivElement>(null);
@@ -97,7 +98,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-white text-neutral-900 rounded-full hover:bg-neutral-800 hover:text-white transition-colors focus-ring"
-                aria-label={`Ver código de ${project.title}`}
+                aria-label={`Ver Código de ${project.title}`}
               >
                 <Github size={20} />
               </a>

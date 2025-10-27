@@ -1,6 +1,7 @@
 "use client";
 import knowledge from "@/data/knowledge.json";
 import { expand } from "@/lib/chunker";
+import { getAIResponse, isGroqConfigured } from "@/lib/groq-ai";
 import {
   buildIndex,
   retrieve,
@@ -34,6 +35,7 @@ export default function Chat() {
   const [loading, setLoading] = useState(false);
   const [extendedMode, setExtendedMode] = useState(false);
   const [lastQuery, setLastQuery] = useState("");
+  const [useAI, setUseAI] = useState(false);
   const booting = useRef(false);
 
   const initEngine = useCallback(async () => {
@@ -62,6 +64,11 @@ export default function Chat() {
     } finally {
       booting.current = false;
     }
+  }, []);
+
+  // Verificar si Groq está configurado
+  useEffect(() => {
+    setUseAI(isGroqConfigured());
   }, []);
 
   // Inicialización con requestIdleCallback
@@ -202,18 +209,43 @@ export default function Chat() {
 
       let response: string;
 
-      if (isExtended) {
-        // Modo extendido: lista numerada sin truncado
-        const numberedResults = results
-          .filter((r) => r && r.text && r.text.trim())
-          .map((r, index) => `${index + 1}. ${r.text.trim()}`)
-          .join("\n\n");
+      // Usar IA si está configurado
+      if (useAI && results.length > 0) {
+        try {
+          // Preparar contexto de la búsqueda RAG
+          const context = results
+            .filter((r) => r && r.text && r.text.trim())
+            .map((r) => r.text.trim())
+            .join("\n\n");
 
-        response =
-          numberedResults ||
-          "No encontré información relevante en mis fuentes locales.";
+          // Preparar historial de conversación
+          const history = messages.map((m) => ({
+            role: m.role as "user" | "assistant",
+            content: m.content,
+          }));
+
+          // Obtener respuesta de Groq
+          response = await getAIResponse(input.trim(), context, history);
+        } catch (aiError) {
+          console.error("Error con IA, usando fallback:", aiError);
+          // Fallback al sistema de búsqueda simple
+          response = generateResponse(input.trim(), results);
+        }
       } else {
-        response = generateResponse(input.trim(), results);
+        // Sistema de búsqueda simple (fallback)
+        if (isExtended) {
+          // Modo extendido: lista numerada sin truncado
+          const numberedResults = results
+            .filter((r) => r && r.text && r.text.trim())
+            .map((r, index) => `${index + 1}. ${r.text.trim()}`)
+            .join("\n\n");
+
+          response =
+            numberedResults ||
+            "No encontré información relevante en mis fuentes locales.";
+        } else {
+          response = generateResponse(input.trim(), results);
+        }
       }
 
       setMessages((m) => [
@@ -252,7 +284,9 @@ export default function Chat() {
 
       {!ready && (
         <p className="text-sm opacity-70">
-          Inicializando el sistema de búsqueda…
+          {useAI
+            ? "Inicializando sistema de IA con Groq…"
+            : "Inicializando el sistema de búsqueda…"}
         </p>
       )}
 

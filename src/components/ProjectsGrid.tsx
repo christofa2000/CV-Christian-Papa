@@ -11,6 +11,7 @@ interface Project {
   demoUrl?: string;
   repoUrl?: string;
   technologies: string[];
+  highlights?: string[];
 }
 
 const projects: Project[] = [
@@ -32,23 +33,34 @@ const projects: Project[] = [
   },
   {
     id: "zapatillas",
-    title: "zapatillas",
+    title: "Ecommerce Zapatillas",
     description:
-      "Plataforma para casa de repuestos: catálogo completo de productos, gestión de stock, ventas y pedidos en línea. Incluye panel administrativo para cargar repuestos con imágenes, controlar inventario y atender consultas de clientes.",
+      "Sitio de comercio electrónico centrado en zapatillas sostenibles, construido con Next.js App Router y un stack moderno orientado a SEO, accesibilidad e internacionalización. Incluye catálogo mockeado, carrito persistente con Zustand y UI animada con Framer Motion + Tailwind 4.",
     image: "/ecommerse.png",
     demoUrl: "https://ecommerse-zapas.vercel.app/es/",
     repoUrl: "https://github.com/christofa2000/Ecommerse-zapas",
     technologies: [
-      "Next.js",
+      "Next.js 16 (App Router)",
+      "React 19",
       "TypeScript",
-      "Tailwind CSS",
+      "Tailwind CSS 4",
+      "Zustand",
       "Framer Motion",
-      "Prisma",
-      "PostgreSQL",
-      "NextAuth",
-      "Cloudinary",
+      "Radix UI",
+      "Lucide Icons",
+      "Jest",
+      "Testing Library",
+      "Playwright",
+    ],
+    highlights: [
+      "🌐 Internacionalización con /[lang] y middleware Accept-Language.",
+      "🛒 Carrito global y persistente con Zustand.",
+      "🎨 Animaciones y UI moderna con Tailwind 4 + Framer Motion.",
+      "🔍 SEO dinámico: metadata, JSON-LD, sitemap, robots.",
+      "🧪 Tests unitarios y E2E (Jest + Playwright).",
     ],
   },
+
   {
     id: "credit-cards-lab",
     title: "Credit Cards Lab",
