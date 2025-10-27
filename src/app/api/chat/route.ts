@@ -1,4 +1,5 @@
 import Groq from "groq-sdk";
+import type { ChatCompletionMessageParam } from "groq-sdk/resources/chat/completions";
 import { NextRequest, NextResponse } from "next/server";
 
 const groq = new Groq({
@@ -65,7 +66,7 @@ Instrucciones:
 
     // Llamar a Groq
     const completion = await groq.chat.completions.create({
-      messages: messages as any,
+      messages: messages as ChatCompletionMessageParam[],
       model: "llama-3.3-70b-versatile",
       temperature: 0.7,
       max_tokens: 512,
