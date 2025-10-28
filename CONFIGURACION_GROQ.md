@@ -20,7 +20,9 @@ La integración con Groq API está lista y funcionando. El chatbot ahora utiliza
 
 ### 2. Configurar Variables de Entorno
 
-Crea un archivo `.env.local` en la raíz del proyecto:
+#### 🔧 Local (`.env.local`)
+
+Crea el archivo `.env.local` en la raíz del proyecto:
 
 ```bash
 # .env.local
@@ -32,6 +34,31 @@ GROQ_API_KEY=tu_api_key_de_groq_aqui
 - El archivo `.env.local` ya está en `.gitignore`, así que tus credenciales no se subirán al repositorio
 - **NO uses** `NEXT_PUBLIC_GROQ_API_KEY` - La API key debe estar solo en el servidor
 - La API key se mantiene segura en la API route y no se expone al navegador
+
+#### 🌐 Producción (Vercel)
+
+**⚠️ IMPORTANTE**: Debes configurar la variable de entorno en Vercel para que el chatbot funcione igual en producción que en localhost.
+
+1. Ve a tu proyecto en [vercel.com](https://vercel.com)
+2. Navega a **Settings** → **Environment Variables**
+3. Agrega la variable:
+   - **Name**: `GROQ_API_KEY`
+   - **Value**: tu API key de Groq
+   - **Environment**: Production, Preview, Development (o solo Production)
+4. **Guarda** y haz un nuevo deploy
+
+```bash
+# Opcional: Forzar redeploy
+git commit --allow-empty -m "chore: trigger redeploy"
+git push origin master
+```
+
+**Diferencias entre localhost y producción**:
+
+- **Localhost sin `.env.local`**: Sistema RAG simple (fallback)
+- **Localhost con `.env.local`**: IA con Groq ✅
+- **Producción sin variable en Vercel**: Sistema RAG simple (fallback) ⚠️
+- **Producción con variable en Vercel**: IA con Groq ✅
 
 ### 3. Reiniciar el servidor
 

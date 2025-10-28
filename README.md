@@ -87,6 +87,18 @@ vercel
 
 🔧 El proyecto está optimizado para Vercel, con rutas estáticas y assets optimizados mediante `next/image`.
 
+### ⚙️ Configurar Variables de Entorno en Vercel
+
+Si utilizas Groq AI para el chatbot, debes configurar la variable de entorno en Vercel:
+
+1. Ve a tu proyecto en [vercel.com](https://vercel.com)
+2. **Settings** → **Environment Variables**
+3. Agrega `GROQ_API_KEY` con tu API key de [Groq](https://console.groq.com)
+4. Selecciona el ambiente (Production, Preview, Development)
+5. Guarda y haz un nuevo deploy
+
+Sin esta configuración, el chatbot funcionará en modo RAG simple en producción.
+
 ## 📱 Diseño responsive
 
 - 📏 **Mobile First** — Diseño optimizado para móviles
@@ -114,7 +126,16 @@ vercel
 - 🔍 **Búsqueda por palabras clave** — Sistema de matching inteligente
 - 💬 **Respuestas contextuales** — Respuestas basadas en información profesional
 - 🎯 **ChrisBot** — Asistente personalizado en castellano
-- ⚡ **Sin configuración** — Funciona inmediatamente sin servicios externos
+- ⚡ **Modo híbrido** — Fallback local sin configuración, IA con Groq opcional
+
+### 🔧 Configuración del Chatbot con IA
+
+El chatbot funciona con dos modos:
+
+1. **Modo RAG simple** (sin configuración): Respuestas basadas en búsqueda local
+2. **Modo IA con Groq** (opcional): Respuestas más naturales e inteligentes
+
+Para habilitar la IA con Groq en localhost y producción, configura la variable de entorno `GROQ_API_KEY`. Ver [CONFIGURACION_GROQ.md](./CONFIGURACION_GROQ.md) para más detalles.
 
 ## 🧭 Estructura del proyecto
 
