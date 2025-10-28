@@ -32,8 +32,16 @@ Si no la tienes:
 4. Configura:
    - **Name**: `GROQ_API_KEY`
    - **Value**: Pega tu API key de Groq
-   - **Environments**: Marca al menos **Production** (también puedes marcar Preview y Development si quieres)
+   - **Environments**:
+     - ⚠️ **Marca "Production"** (obligatorio para el sitio principal)
+     - Opcional: "Preview" y "Development"
 5. Haz clic en **Save**
+
+**⚠️ Error común**: Si solo marcas "All Pre-Production Environments":
+
+- La variable NO estará disponible en Production
+- El chatbot seguirá sin IA en el sitio principal
+- **Solución**: Edita la variable y marca también "Production"
 
 ### Paso 3: Hacer redeploy
 
@@ -68,6 +76,22 @@ Después del redeploy:
 - ✅ **Con IA**: Respuesta coherente y contextual
 - ⚠️ **Sin IA**: Respuesta más corta y extraída literalmente del knowledge.json
 
+### 🧪 Test rápido para verificar la configuración
+
+**Mensaje esperado en el chat**:
+
+- ✅ **Con IA configurada**: El mensaje inicial dice "Inicializando sistema de IA con Groq…"
+- ⚠️ **Sin IA**: El mensaje dice "Inicializando el sistema de búsqueda…"
+
+**Prueba de funcionalidad**:
+
+Pregunta: "¿Qué tecnologías usa Christian?"
+
+- ✅ **Con IA**: Respuesta coherente y fluida como: "Christian usa principalmente React, TypeScript, Next.js, y Tailwind CSS para desarrollar aplicaciones web modernas. También trabaja con Redux, Prisma, PostgreSQL, Node.js, Cloudflare, y Vercel..."
+- ⚠️ **Sin IA**: Lista simple con bullets extraída literalmente del knowledge.json
+
+**Si ves respuestas simples con bullets (•) y texto literal, la variable NO está configurada correctamente.**
+
 ---
 
 ## 📊 Tabla de Comparación
@@ -89,6 +113,35 @@ Para verificar si tu proyecto de Vercel tiene la variable configurada:
 2. **Settings** → **Environment Variables**
 3. Busca `GROQ_API_KEY` en la lista
 4. Si no está, añádela siguiendo los pasos anteriores
+
+### ✅ Checklist de verificación
+
+Para confirmar que la configuraste correctamente, verifica:
+
+- [ ] La variable se llama exactamente `GROQ_API_KEY` (no `GROQ_APIKEY` ni con espacios)
+- [ ] La API key tiene el formato correcto (empieza con `gsk_` seguido de caracteres alfanuméricos)
+- [ ] **CRÍTICO**: Está marcada para el ambiente "Production" (el sitio principal)
+- [ ] El icono muestra que es una variable "encrypted" 🔒
+- [ ] Guardaste los cambios después de agregarla
+
+**Formato típico de API key de Groq**: `gsk_xxxxxxxxxxxxxxxxxxxxxx`
+
+### ⚠️ Importante: Ambientes en Vercel
+
+Vercel tiene 3 ambientes:
+
+- **Production**: El sitio principal (cv-christian-papa.vercel.app)
+- **Preview**: Cada Pull Request o branch
+- **Development**: Deployments locales
+
+**Si solo marcaste "All Pre-Production Environments"**:
+
+- ✅ Funcionará en PRs y branches
+- ❌ NO funcionará en el sitio principal en producción
+
+**Para que funcione en el sitio principal**:
+
+- Marca también la casilla de **"Production"**
 
 ---
 
