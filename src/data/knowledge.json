@@ -17,7 +17,7 @@
       "buenos aires",
       "argentina"
     ],
-    "text": "👨‍💻 Christian Oscar Papa es un Desarrollador Frontend y Mobile especializado en React, React Native y TypeScript. Vive en Buenos Aires, Capital Federal (Argentina). Impulsa la creación de experiencias digitales escalables, fluidas y visualmente cuidadas, combinando la lógica del código con una visión artística del diseño. Modalidad de trabajo: 100% remota. Idiomas: español e inglés técnico. Tono del bot: profesional, empático y auténtico."
+    "text": "Soy Christian Oscar Papa, desarrollador frontend y mobile desde Buenos Aires, Argentina. Me especializo en React, Next.js y TypeScript, creando experiencias digitales que combinan código limpio con diseño artístico. También soy psicólogo social formado en la escuela de Enrique Pichon Rivière, lo que me ayuda a entender la dimensión humana detrás de cada proyecto."
   },
   {
     "id": "motivacion",
@@ -37,7 +37,7 @@
       "superación",
       "montaña"
     ],
-    "text": "🏔️ Más allá de la tecnología, Christian enfrenta los desafíos con resiliencia y pasión. Su mayor reto personal fue escalar el Aconcagua, la montaña más alta de América, donde aprendió a superar adversidades, mantener el enfoque bajo presión y valorar cada pequeño avance. Esa experiencia lo inspira a encarar cada proyecto de desarrollo con disciplina, paciencia y una mentalidad de crecimiento continuo."
+    "text": "Mi mayor reto personal fue escalar el Aconcagua, la montaña más alta de América. Esa experiencia me enseñó que los proyectos más ambiciosos se conquistan paso a paso, manteniendo el foco bajo presión y valorando cada pequeño avance. Hoy aplico esa misma disciplina al desarrollo: constancia, adaptación y crecimiento continuo."
   },
   {
     "id": "arte",
@@ -53,7 +53,7 @@
       "estilo artístico",
       "equilibrio entre arte y código"
     ],
-    "text": "💃 Christian también es bailarín de tango, una disciplina que le enseñó a equilibrar precisión técnica con sensibilidad artística. Esa dualidad se refleja en su trabajo como desarrollador: busca que cada interfaz tenga ritmo, armonía visual y una conexión emocional con el usuario. Su enfoque artístico influye directamente en el diseño de experiencias digitales humanas y coherentes."
+    "text": "Bailo tango desde hace varios años. Esa disciplina me enseñó que la técnica precisa sin sensibilidad emocional no funciona. Lo mismo aplico al código: cada interfaz debe tener ritmo, armonía visual y una conexión emocional real con quien la usa."
   },
   {
     "id": "stack",
@@ -72,7 +72,7 @@
       "Redux Toolkit",
       "React Query"
     ],
-    "text": "⚙️ Stack principal: React, Next.js, React Native, TypeScript, Vite, Zustand, Redux Toolkit, React Query, TailwindCSS, Material UI, ShadCN, Ant Design, Jest, Vitest, React Testing Library, Node.js, Prisma, Postgres, Supabase, Git y Vercel. En diseño utiliza Figma y Framer Motion, con foco en accesibilidad (WCAG) y rendimiento."
+    "text": "Mi stack principal: React, Next.js, TypeScript, TailwindCSS y React Native. Para estado manejo Zustand y Redux Toolkit. Trabajo con Prisma, PostgreSQL y Supabase en backend, Figma para diseño, y Jest/Vitest para testing. Todo desplegado en Vercel con foco en performance y accesibilidad."
   },
   {
     "id": "filosofia",
@@ -87,7 +87,7 @@
       "diseño centrado en el usuario",
       "mejora continua"
     ],
-    "text": "💡 Christian combina disciplina técnica con creatividad artística. Para él, desarrollar un proyecto es como escalar una montaña: requiere constancia, foco y adaptación. Aplica metodologías ágiles, testing continuo y diseño centrado en el usuario. Cree en la mejora constante, en escribir código limpio y en entregar resultados que generen impacto real."
+    "text": "Para mí, desarrollar es como escalar una montaña: requiere constancia, foco y capacidad de adaptación. Aplico metodologías ágiles, testing continuo y diseño centrado en el usuario. Creo en código limpio, mejora constante y resultados que generen impacto real."
   },
   {
     "id": "experiencia:santander",
@@ -101,7 +101,7 @@
       "empresa Santander Tecnología Argentina",
       "experiencia laboral actual"
     ],
-    "text": "🏦 React Developer en Santander Tecnología Argentina (jun. 2024 – actualidad). Desarrolla interfaces seguras y accesibles con React, TypeScript y Redux. Cumple con regulaciones bancarias y estándares de seguridad. Refactorizó componentes críticos, mejoró la performance y participa activamente en code reviews con foco en calidad."
+    "text": "Trabajo en Santander desde junio 2024 como React Developer. Desarrollé interfaces seguras y accesibles usando React, TypeScript y Redux, cumpliendo regulaciones bancarias. Refactoricé componentes críticos, mejoré performance y participé activamente en code reviews para asegurar calidad."
   },
   {
     "id": "experiencia:despegar",
@@ -115,7 +115,7 @@
       "trabajo en Despegar",
       "experiencia previa"
     ],
-    "text": "✈️ React Developer en Despegar (jul. 2023 – may. 2024). Implementó nuevas funcionalidades en la plataforma de reservas de hoteles y vuelos. Usó React, TypeScript y TailwindCSS para desarrollar componentes reutilizables e integró APIs en tiempo real. Mejoró el rendimiento (+15 puntos Lighthouse) y colaboró estrechamente con equipos de UX/UI y backend."
+    "text": "Estuve un año en Despegar (jul. 2023 – may. 2024) como React Developer. Implementé funcionalidades en la plataforma de reservas de hoteles y vuelos usando React, TypeScript y TailwindCSS. Con componentes reutilizables, APIs en tiempo real y optimizaciones, logré +15 puntos en Lighthouse."
   },
   {
     "id": "experiencia:bewise",
@@ -129,7 +129,7 @@
       "QA técnico",
       "aplicaciones internas"
     ],
-    "text": "💻 React Developer en Bewise (jun. 2022 – jul. 2023). Desarrolló aplicaciones internas bajo metodología SCRUM. Stack: React, Vite y TailwindCSS. Mejoró la accesibilidad y el rendimiento (Lighthouse +95). Participó en QA técnico y en procesos de release."
+    "text": "Desarrollé aplicaciones internas en Bewise (jun. 2022 – jul. 2023) trabajando con metodología SCRUM. Usé React, Vite y TailwindCSS para lograr Lighthouse +95. También participé en QA técnico y procesos de release."
   },
   {
     "id": "experiencia:circulo",
@@ -143,7 +143,7 @@
       "optimización de endpoints",
       "frontend ecommerce"
     ],
-    "text": "🛒 Frontend Developer en Círculo Mágico (oct. 2021 – jun. 2022). Desarrolló el carrito de compras para el e-commerce, priorizando el rendimiento y la experiencia del usuario. Implementó Redux, consumo de APIs RESTful y optimización de endpoints."
+    "text": "En Círculo Mágico (oct. 2021 – jun. 2022) desarrollé el carrito de compras del e-commerce priorizando performance y UX. Implementé Redux, consumí APIs RESTful y optimicé endpoints para reducir latencia."
   },
   {
     "id": "experiencia:freelance",
@@ -158,7 +158,7 @@
       "interfaz Android",
       "interfaz iOS"
     ],
-    "text": "🚀 Frontend & Mobile Developer Freelance (nov. 2020 – sept. 2021). Creó proyectos con React, React Native, Next.js, Vue.js y TypeScript. Desarrolló apps híbridas con Expo y React Native Paper, optimizando interfaces para Android e iOS. Foco en usabilidad, rendimiento y coherencia visual."
+    "text": "Como freelancer (nov. 2020 – sept. 2021) creé proyectos con React, Next.js, Vue.js y TypeScript. Desarrollé apps híbridas con React Native y Expo, optimizando interfaces para Android e iOS con foco en usabilidad y coherencia visual."
   },
   {
     "id": "educacion",
@@ -173,7 +173,7 @@
       "aprendizaje",
       "cursos online"
     ],
-    "text": "🎓 Udemy Alumni (2020–2021): formación en Desarrollo Web y Mobile con React, Next.js, React Native, TypeScript, Node.js, Redux y Zustand. Instituto Industrial Luis A. Huergo: Técnico Profesional en Computación."
+    "text": "Soy autodidacta: aprendí React, Next.js, TypeScript, Node.js y React Native principalmente en Udemy entre 2020-2021. También soy Técnico Profesional en Computación egresado del Instituto Industrial Luis A. Huergo."
   },
   {
     "id": "formacion:psicologia-social",
@@ -186,7 +186,7 @@
       "análisis institucional",
       "comunicación humana"
     ],
-    "text": "🧠 Psicólogo Social formado en la Escuela de Enrique Pichon Rivière. Esta formación me brindó una comprensión profunda de la dinámica humana, el trabajo en equipo y la comunicación efectiva. Aplico estos conocimientos en la gestión de equipos, la empatía con los usuarios y el diseño de experiencias digitales que conectan emocionalmente."
+    "text": "Estudié Psicología Social en la escuela de Enrique Pichon Rivière. Esa formación me dio herramientas para entender dinámica grupal, comunicación efectiva y análisis institucional. Las aplico diariamente en trabajo en equipo, empatía con usuarios y diseño de experiencias digitales que conectan emocionalmente."
   },
   {
     "id": "softskills",
@@ -202,7 +202,7 @@
       "adaptabilidad",
       "resiliencia"
     ],
-    "text": "🧩 Comunicación efectiva, trabajo en equipo, adaptabilidad, resiliencia, sensibilidad artística, organización, liderazgo técnico, resolución de problemas y mejora continua."
+    "text": "Más allá del código, me destaco en comunicación efectiva, trabajo en equipo, adaptabilidad y resiliencia. Mi formación en psicología social me ayudó a desarrollar liderazgo técnico y sensibilidad artística que aplico tanto en diseño como en resolución de problemas complejos."
   },
   {
     "id": "contacto",
@@ -217,7 +217,7 @@
       "cómo comunicarse",
       "redes sociales"
     ],
-    "text": "🔗 LinkedIn: https://www.linkedin.com/in/christian-oscar-papa · GitHub: https://github.com/christofa2000 · Email: christofa2000@gmail.com"
+    "text": "Podés contactarme por LinkedIn (christian-oscar-papa), GitHub (christofa2000) o email (christofa2000@gmail.com). Prefiero trabajo 100% remoto y respondo en menos de 24 horas."
   },
   {
     "id": "faq",
@@ -233,7 +233,7 @@
       "oportunidades remotas",
       "frontend senior"
     ],
-    "text": "❓ Q: ¿Cuál es tu especialidad? A: Desarrollo Frontend y Mobile con React, React Native y TypeScript.\nQ: ¿Tenés experiencia en apps móviles? A: Sí, desarrollé proyectos con React Native y Expo optimizados para Android e iOS.\nQ: ¿Qué tipo de proyectos te interesan? A: Web o móviles con foco en UI moderna, rendimiento y accesibilidad.\nQ: ¿Qué te diferencia? A: Mi equilibrio entre código limpio, diseño artístico y enfoque humano en la experiencia de usuario."
+    "text": "¿Mi especialidad? Frontend y mobile con React, TypeScript y Next.js. ¿Proyectos que me interesan? Aplicaciones web o móviles con foco en UI moderna, performance y accesibilidad. ¿Qué me diferencia? El equilibrio entre código limpio, diseño artístico y enfoque psicológico en la experiencia de usuario."
   },
   {
     "id": "proyecto:checkout-performance",
@@ -250,7 +250,7 @@
       "lazy loading",
       "code splitting"
     ],
-    "text": "🚀 Optimización de checkout en e-commerce: reducción de TTFB y mejora de Core Web Vitals. Implementé code-splitting, lazy loading de assets y memoización de componentes críticos. Resultado: +18 puntos en Lighthouse (Performance) y menor tasa de abandono en el flujo de compra."
+    "text": "Optimicé un checkout de e-commerce reduciendo TTFB y mejorando Core Web Vitals. Implementé code-splitting, lazy loading de assets y memoización de componentes críticos. Logré +18 puntos en Lighthouse (Performance) y menor tasa de abandono en el flujo de compra."
   },
   {
     "id": "proyecto:migracion-typescript",
@@ -264,7 +264,7 @@
       "tsconfig",
       "mejoras de mantenibilidad"
     ],
-    "text": "🧠 Migración progresiva a TypeScript: definí estrategia de tipado estricto, configuré ESLint/TSConfig y refactoricé módulos compartidos. Beneficios: menos errores en tiempo de ejecución, DX mejorada y base de código más mantenible."
+    "text": "Lideré una migración progresiva a TypeScript con tipado estricto. Configuré ESLint y TSConfig, refactoricé módulos compartidos y definí estrategias para reducir deuda técnica. Resultado: menos errores en runtime, mejor DX y base de código más mantenible."
   },
   {
     "id": "metodologia:testing-ci",
@@ -280,7 +280,7 @@
       "pipeline",
       "revisiones de código"
     ],
-    "text": "🧪 Testing + CI/CD: configuración de pruebas unitarias y de integración con Jest/Vitest y React Testing Library. Integración en CI (GitHub Actions) para asegurar calidad en cada PR, coverage mínimo y checks automáticos antes de merge."
+    "text": "Configuré testing con Jest/Vitest y React Testing Library, integrando todo en CI con GitHub Actions. Aseguro calidad en cada PR con coverage mínimo, checks automáticos y revisiones de código antes del merge."
   },
   {
     "id": "accesibilidad:wcag",
@@ -295,7 +295,7 @@
       "focus visible",
       "aria"
     ],
-    "text": "🎯 Accesibilidad (WCAG): revisión de contraste, navegación por teclado y roles ARIA. Implementé focus visible, etiquetas semánticas y mejoras para lectores de pantalla. Objetivo: interfaces inclusivas y consistentes."
+    "text": "Me especializo en accesibilidad (WCAG): revisiones de contraste, navegación por teclado y roles ARIA. Implemento focus visible, etiquetas semánticas y mejoras para lectores de pantalla. Mi objetivo es crear interfaces inclusivas que todos puedan usar."
   },
   {
     "id": "servicios",
@@ -309,7 +309,7 @@
       "react native",
       "remoto"
     ],
-    "text": "🧩 Servicios: desarrollo Frontend y Mobile (React/React Native), auditorías de performance, migraciones a TypeScript, diseño de componentes/UI y accesibilidad. Modalidad 100% remota; disponibilidad para proyectos y colaboraciones."
+    "text": "Ofrezco desarrollo Frontend y Mobile (React/React Native), auditorías de performance, migraciones a TypeScript, diseño de componentes reutilizables y mejoras de accesibilidad. Modalidad 100% remota. Disponible para proyectos y colaboraciones."
   },
   {
     "id": "vision",
@@ -321,7 +321,7 @@
       "crecimiento",
       "trayectoria"
     ],
-    "text": "🚀 Mi propósito es construir productos digitales sostenibles que unan tecnología, arte y psicología social. Busco que cada desarrollo tenga un impacto humano real, que facilite la vida de las personas y mejore la experiencia digital con empatía, belleza y funcionalidad. Mi visión a futuro es liderar proyectos que integren inteligencia artificial, accesibilidad y diseño emocional."
+    "text": "Mi propósito es construir productos digitales sostenibles que unan tecnología, arte y psicología. Busco impacto humano real: cada desarrollo debe facilitar la vida de las personas con empatía, belleza y funcionalidad. A futuro quiero liderar proyectos que integren IA ética, accesibilidad universal y diseño emocional."
   },
   {
     "id": "ux-design",
@@ -336,7 +336,7 @@
       "motion design",
       "tokens de diseño"
     ],
-    "text": "🎨 En diseño aplico principios de UX/UI combinando Figma, motion natural y accesibilidad. Cada interfaz que creo busca armonía visual, claridad jerárquica y coherencia con el tono de la marca. Uso design tokens globales y prototipos interactivos para mantener consistencia y mejorar la comunicación con el equipo."
+    "text": "En diseño aplico principios de UX/UI con Figma, animaciones naturales y foco en accesibilidad. Cada interfaz busca armonía visual, claridad jerárquica y coherencia con la marca. Uso design tokens globales y prototipos interactivos para mantener consistencia."
   },
   {
     "id": "ai-integraciones",
@@ -352,7 +352,7 @@
       "automatización",
       "embedding models"
     ],
-    "text": "🤖 Experimento con inteligencia artificial aplicada al desarrollo. Implementé chatbots con RAG local usando Ollama y ChromaDB, generadores de embeddings y agentes personalizados para automatizar tareas de codificación en Cursor y Codex. Mi objetivo es integrar IA de forma ética y útil en procesos creativos y técnicos."
+    "text": "Experimenté con IA aplicada al desarrollo: chatbots RAG local con Ollama y ChromaDB, generadores de embeddings y agentes personalizados. Mi objetivo es integrar IA de forma ética y útil en procesos creativos y técnicos."
   },
   {
     "id": "proyectos:portfolio",
@@ -367,7 +367,7 @@
       "motorlider",
       "freelancer ledger"
     ],
-    "text": "🧱 Proyectos destacados: 'Zapatillas' (e-commerce sostenible con Next.js, Tailwind y Zustand), 'Museo del Tiempo' (explorador de décadas con iTunes y Wikipedia APIs), 'Credit Cards Lab' (simulador bancario con React y Zustand), 'Espacio de Arte Chivilcoy' (portal cultural con foco artístico y comunitario), y 'Motorlider' (tienda de autopartes optimizada para SEO). Todos reflejan mi equilibrio entre performance, storytelling y diseño emocional."
+    "text": "Mis proyectos destacados: 'Zapatillas' (e-commerce sostenible con Next.js y Zustand), 'Museo del Tiempo' (explorador de décadas con iTunes y Wikipedia APIs), 'Credit Cards Lab' (simulador bancario), 'Espacio de Arte Chivilcoy' (portal cultural) y 'Motorlider' (tienda de autopartes optimizada para SEO). Todos reflejan mi equilibrio entre performance, storytelling y diseño emocional."
   },
   {
     "id": "instrucciones-chatbot",
@@ -379,6 +379,6 @@
       "interacción con el bot",
       "cv chris"
     ],
-    "text": "💬 Podés hablar conmigo como si charlaras con Christian. Preguntame sobre su experiencia, proyectos o filosofía de trabajo. Ejemplos: '¿Qué hizo en Despegar?', '¿Qué tecnologías usa en sus proyectos?', '¿Qué lo inspira como desarrollador?', o '¿Qué aprendió al escalar el Aconcagua?'. ChrisBot responde con un tono profesional, empático y humano."
+    "text": "Hablá conmigo como si charlaras con Christian. Preguntame sobre mi experiencia en Santander o Despegar, qué tecnologías uso, qué me inspira como desarrollador, o qué aprendí escalando el Aconcagua. Respondo con un tono profesional, empático y humano."
   }
 ]
