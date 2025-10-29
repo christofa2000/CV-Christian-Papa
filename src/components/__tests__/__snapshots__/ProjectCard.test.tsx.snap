@@ -51,7 +51,7 @@ exports[`ProjectCard component coincide con el snapshot 1`] = `
             </svg>
           </a>
           <a
-            aria-label="Ver código de Proyecto de Prueba"
+            aria-label="Ver Código de Proyecto de Prueba"
             class="p-3 bg-white text-neutral-900 rounded-full hover:bg-neutral-800 hover:text-white transition-colors focus-ring"
             href="https://github.com/example/repo"
             rel="noopener noreferrer"

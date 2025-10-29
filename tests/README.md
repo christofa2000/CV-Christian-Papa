@@ -95,13 +95,13 @@ npm run test:all
 - ✅ **Hero**: Renderizado, elementos, accesibilidad, snapshot
 - ✅ **NavBar**: Navegación, menú móvil, ARIA, snapshot
 - ✅ **ProjectCard**: Contenido, enlaces, tecnologías, snapshot
-- ✅ **Contact**: Enlaces, descarga CV, disponibilidad, snapshot
+- ✅ **Contact**: Enlaces, disponibilidad, snapshot
 
 ### Tests E2E (16 tests)
 
 - ✅ **Homepage**: Carga, contenido, navegación, imagen
 - ✅ **Navegación**: Secciones, menú móvil, scroll suave
-- ✅ **Contacto**: Enlaces, descarga, información
+- ✅ **Contacto**: Enlaces, información de disponibilidad
 - ✅ **Accesibilidad**: Títulos, skip links, navegación por teclado, ARIA
 
 ## 🔧 Requisitos del Sistema
@@ -209,4 +209,3 @@ npm run test:e2e
 ```
 
 Los tests E2E se ejecutan con `reuseExistingServer: false` en CI para mayor confiabilidad.
-

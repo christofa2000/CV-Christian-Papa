@@ -74,7 +74,6 @@ Cada test verifica:
 - ✓ Renderiza el título de la sección
 - ✓ Renderiza el subtítulo descriptivo
 - ✓ Renderiza los enlaces de contacto (Email, GitHub, LinkedIn)
-- ✓ Renderiza el botón de descarga de CV
 - ✓ Renderiza la información de disponibilidad
 - ✓ Los enlaces tienen los hrefs correctos
 - ✓ Tiene atributos ARIA correctos
@@ -97,5 +96,3 @@ Los tests están configurados en:
 - Se mockean las dependencias externas (Next.js, Framer Motion) para aislar los componentes
 - Los snapshots ayudan a detectar cambios no intencionados en el HTML
 - Todos los tests respetan las mejores prácticas de accesibilidad
-
-

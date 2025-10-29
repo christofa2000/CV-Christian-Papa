@@ -14,7 +14,7 @@ You are a **Senior Frontend Engineer & UI/UX Designer** specialized in **React, 
 ## Objectives
 
 1. Implement an **intro splash screen** displaying the name **“Christian Oscar Papa”** with a tasteful animation (letter/word reveal + slight blur→sharp) and auto-transition to the main page. Respect `prefers-reduced-motion`.
-2. Build a clean **Home** with hero + CTA (“Ver proyectos”, “Descargar CV”), sections **Sobre mí (ES/EN)** side-by-side, **Proyectos** (uniform grid), **Contacto**, **Footer**.
+2. Build a clean **Home** with hero + CTA ("Ver proyectos"), sections **Sobre mí (ES/EN)** side-by-side, **Proyectos** (uniform grid), **Contacto**, **Footer**.
 3. Apply **UX improvements**: AA contrast, generous spacing scale (8/12/16/24/32), focus visible, keyboard navigation, skip links, scrollspy.
 4. Ensure **Performance**: lazy images with `next/image`, WebP/AVIF if possible, code splitting, minimal deps. Aim Lighthouse ≥90 (A11y 100 if possible).
 5. Provide **SEO/Meta**: Next.js `metadata`, Open Graph, Twitter, `robots.txt`, `sitemap.xml`.

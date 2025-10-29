@@ -2,7 +2,7 @@
 
 import { fadeInUp, stagger } from "@/lib/motion";
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const contactLinks = [
   {
@@ -82,18 +82,6 @@ export default function Contact() {
                 </motion.a>
               );
             })}
-          </motion.div>
-
-          {/* Download CV Button */}
-          <motion.div variants={fadeInUp}>
-            <a
-              href="/christian-papa.pdf"
-              download="Christian-Papa.pdf"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white font-semibold rounded-2xl hover:bg-indigo-700 transition-colors focus-ring shadow-lg hover:shadow-xl"
-            >
-              <Download size={20} />
-              Descargar CV
-            </a>
           </motion.div>
 
           {/* Additional Info */}

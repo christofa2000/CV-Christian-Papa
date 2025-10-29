@@ -23,11 +23,6 @@ describe("Contact component", () => {
     expect(screen.getByText(/LinkedIn/i)).toBeInTheDocument();
   });
 
-  it("renderiza el botón de descarga de CV", () => {
-    render(<Contact />);
-    expect(screen.getByText(/Descargar CV/i)).toBeInTheDocument();
-  });
-
   it("renderiza la información de disponibilidad", () => {
     render(<Contact />);
     expect(screen.getByText(/Disponibilidad/i)).toBeInTheDocument();
@@ -41,7 +36,6 @@ describe("Contact component", () => {
     const emailLink = screen.getByText(/Email/i).closest("a");
     const githubLink = screen.getByText(/GitHub/i).closest("a");
     const linkedinLink = screen.getByText(/LinkedIn/i).closest("a");
-    const cvLink = screen.getByText(/Descargar CV/i).closest("a");
 
     expect(emailLink).toHaveAttribute("href", "christofa2000@gmail.com");
     expect(githubLink).toHaveAttribute(
@@ -52,7 +46,6 @@ describe("Contact component", () => {
       "href",
       "https://www.linkedin.com/in/christian-oscar-papa?utm_source=share_via&utm_content=profile&utm_medium=member_android"
     );
-    expect(cvLink).toHaveAttribute("href", "/cv-christian-papa.pdf");
   });
 
   it("tiene los atributos ARIA correctos en los enlaces", () => {
@@ -80,5 +73,3 @@ describe("Contact component", () => {
     expect(container).toMatchSnapshot();
   });
 });
-
-
