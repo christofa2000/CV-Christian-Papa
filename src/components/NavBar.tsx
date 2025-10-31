@@ -42,7 +42,7 @@ export default function NavBar() {
       {/* Skip Link accesible */}
       <a
         href="#content"
-        className="sr-only focus:not-sr-only focus:absolute focus:-top-10 focus:left-4 focus:z-[100] focus:bg-indigo-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:transition-transform focus-ring"
+        className="sr-only focus:not-sr-only focus:absolute focus:-top-10 focus:left-4 focus:z-[100] focus:bg-blue-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:transition-transform focus-ring"
         onFocus={(e) => e.currentTarget.scrollIntoView({ behavior: "smooth" })}
       >
         Saltar al contenido principal
@@ -106,7 +106,7 @@ export default function NavBar() {
                     className={`block w-full text-left px-5 py-2 text-sm font-medium rounded-full transition-colors focus-ring border
                       ${
                         isActive
-                          ? "text-white bg-indigo-600/30 border-white/10"
+                          ? "text-white bg-blue-700/30 border-white/10"
                           : "text-neutral-300 hover:text-neutral-100 hover:bg-neutral-800/60 border-white/10"
                       }`}
                   >

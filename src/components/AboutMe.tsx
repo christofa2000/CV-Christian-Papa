@@ -58,24 +58,26 @@ export default function AboutMe() {
               Desarrollador Frontend
             </span>{" "}
             especializado en <span className="text-neutral-200">React</span> y{" "}
-            <span className="text-neutral-200">TypeScript</span>. Creo
-            experiencias web modernas, accesibles y de alto rendimiento, con
-            foco en la escalabilidad y el detalle.
+            <span className="text-neutral-200">TypeScript</span>.
+            <br />
+            Diseño experiencias web modernas, accesibles y precisas, donde cada
+            detalle cuenta y la arquitectura se mantiene limpia y escalable.
           </p>
 
           <p className="mt-5 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
             Trabajo con <span className="text-neutral-200">Next.js</span>,{" "}
             <span className="text-neutral-200">Tailwind</span> y{" "}
             <span className="text-neutral-200">Node.js</span>, aplicando buenas
-            prácticas y tests con <span className="text-neutral-200">Jest</span>{" "}
-            y <span className="text-neutral-200">React Testing Library</span>.
+            prácticas, tipado estricto y tests automatizados con{" "}
+            <span className="text-neutral-200">Jest</span> y{" "}
+            <span className="text-neutral-200">React Testing Library</span>.
           </p>
 
           <p className="mt-5 text-lg md:text-xl text-neutral-400 leading-relaxed max-w-3xl mx-auto">
-            Me definen la <span className="text-neutral-200">comunicación</span>
-            , la <span className="text-neutral-200">adaptabilidad</span> y el
-            trabajo en equipo, siempre buscando mejorar procesos y aprender algo
-            nuevo en cada proyecto.
+            Valoro la <span className="text-neutral-200">claridad</span>, la{" "}
+            <span className="text-neutral-200">colaboración</span> y el{" "}
+            <span className="text-neutral-200">aprendizaje constante</span> como
+            parte esencial de mi forma de crear.
           </p>
         </motion.div>
 

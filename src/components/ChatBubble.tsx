@@ -89,10 +89,10 @@ export default function ChatBubble() {
         onClick={() => setOpen(true)}
         className="
           fixed bottom-6 right-6 md:bottom-8 md:right-8
-          rounded-full bg-indigo-600 text-white shadow-lg
+          rounded-full bg-blue-700 text-white shadow-lg
           px-5 py-3  /* <= padding del botón */
-          hover:bg-indigo-700 active:bg-indigo-800
-          transition focus:outline-none focus:ring-2 focus:ring-indigo-400 ring-offset-2
+          hover:bg-blue-600 active:bg-blue-800
+          transition focus:outline-none focus:ring-2 focus:ring-blue-500 ring-offset-2
         "
       >
         ChrisBot
@@ -131,7 +131,7 @@ export default function ChatBubble() {
                   inline-flex items-center justify-center rounded-md
                   px-2.5 py-1.5 text-sm
                   hover:bg-white/5
-                  focus:outline-none focus:ring-2 focus:ring-indigo-400 ring-offset-2
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 ring-offset-2
                 "
               >
                 ✕

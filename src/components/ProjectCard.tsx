@@ -86,7 +86,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white text-neutral-900 rounded-full hover:bg-indigo-600 hover:text-white transition-colors focus-ring"
+                className="p-3 bg-white text-neutral-900 rounded-full hover:bg-blue-700 hover:text-white transition-colors focus-ring"
                 aria-label={`Ver demo de ${project.title}`}
               >
                 <ExternalLink size={20} />
@@ -140,7 +140,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl hover:bg-indigo-700 transition-colors focus-ring"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-700 text-white font-medium rounded-xl hover:bg-blue-600 transition-colors focus-ring"
             >
               <ExternalLink size={16} />
               Ver Demo

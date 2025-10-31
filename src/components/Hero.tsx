@@ -49,21 +49,22 @@ export default function Hero() {
           >
             <div className="space-y-4 max-w-2xl">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold text-neutral-200 leading-tight">
-                Hola, soy{" "}
-                <span className="text-violet-400">Christian Oscar Papa</span>
+                <span className="text-blue-400">Christian Oscar Papa</span>
               </h1>
 
               <p className="text-xl md:text-2xl lg:text-3xl text-neutral-400 leading-relaxed">
-                Desarrollador Frontend especializado en React, Next.js y
-                TypeScript. Creando experiencias web modernas, accesibles y
-                performantes.
+                Desarrollador Frontend.
+              </p>
+
+              <p className="text-lg md:text-xl lg:text-2xl text-neutral-500 leading-relaxed">
+                Creo interfaces precisas donde el código encuentra su ritmo.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <button
                 onClick={scrollToProjects}
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition-colors focus-ring shadow-lg hover:shadow-xl"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-700 text-white font-semibold rounded-full hover:bg-blue-600 transition-colors focus-ring shadow-lg hover:shadow-xl"
               >
                 Ver proyectos
                 <ArrowDown
@@ -91,7 +92,7 @@ export default function Hero() {
                 className="absolute inset-0 rounded-full"
                 style={{
                   background:
-                    "radial-gradient(60% 60% at 50% 50%, rgba(139,92,246,0.35) 0%, rgba(99,102,241,0.22) 35%, rgba(0,0,0,0) 70%)",
+                    "radial-gradient(60% 60% at 50% 50%, rgba(29,78,216,0.35) 0%, rgba(37,99,235,0.22) 35%, rgba(0,0,0,0) 70%)",
                   filter: "blur(10px)",
                 }}
                 animate={{ scale: [1, 1.06, 1], opacity: [0.7, 1, 0.7] }}

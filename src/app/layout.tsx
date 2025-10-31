@@ -1,5 +1,6 @@
 import ChatBubble from "@/components/ChatBubble";
 import IntroGate from "@/components/IntroGate";
+import ParticlesBackground from "@/components/ParticlesBackground";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -76,7 +77,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="dark">
-      <body className="relative min-h-screen bg-neutral-950 text-neutral-200 antialiased selection:bg-indigo-500/30 overflow-x-hidden">
+      <body className="relative min-h-screen bg-neutral-950 text-neutral-200 antialiased selection:bg-blue-600/30 overflow-x-hidden">
         {/* 🔮 Fondo global tipo "Electric Motion Blur" */}
         <div aria-hidden className="fixed inset-0 -z-10 overflow-hidden">
           {/* Capa base */}
@@ -87,13 +88,22 @@ export default function RootLayout({
             className="absolute -inset-[25%] blur-3xl opacity-15 animate-spin-slow"
             style={{
               background:
-                "conic-gradient(from 0deg at 50% 50%, #6d28d9, #14b8a6, #1e3a8a, #6d28d9)",
+                "conic-gradient(from 0deg at 50% 50%, #1d4ed8, #14b8a6, #2563eb, #1d4ed8)",
               borderRadius: "50%",
               width: "150%",
               height: "150%",
               left: "-25%",
               top: "-25%",
             }}
+          />
+
+          {/* Fondo de partículas */}
+          <ParticlesBackground
+            particleCount={200}
+            particleColors={["#1d4ed8", "#3b82f6", "#2563eb", "#1e40af"]}
+            connectionDistance={180}
+            particleSpeed={0.3}
+            opacity={0.7}
           />
 
           {/* Textura grain */}

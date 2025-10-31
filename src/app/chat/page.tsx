@@ -320,13 +320,13 @@ export default function Chat() {
         <input
           name="q"
           disabled={loading}
-          className="flex-1 rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 ring-offset-2 disabled:opacity-50"
+          className="flex-1 rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ring-offset-2 disabled:opacity-50"
           placeholder="Pregúntame sobre Christian o sus proyectos"
           aria-label="Entrada para preguntas"
         />
         <button
           disabled={loading}
-          className="rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 ring-offset-2 disabled:opacity-50"
+          className="rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ring-offset-2 disabled:opacity-50"
         >
           {loading ? "..." : "Enviar"}
         </button>
@@ -339,7 +339,7 @@ export default function Chat() {
             key={suggestion}
             onClick={() => ask(suggestion)}
             disabled={loading}
-            className="text-sm text-indigo-100 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 disabled:opacity-50 dark:text-indigo-300"
+            className="text-sm text-blue-200 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 dark:text-blue-300"
           >
             {suggestion}
           </button>
@@ -350,7 +350,7 @@ export default function Chat() {
           <button
             onClick={() => ask(lastQuery, true)}
             disabled={loading}
-            className="text-sm text-indigo-100 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 disabled:opacity-50 dark:text-indigo-300"
+            className="text-sm text-blue-200 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 dark:text-blue-300"
           >
             Ver más
           </button>

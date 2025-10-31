@@ -69,9 +69,9 @@ export default function IntroSplash({ onFinish, autoCloseMs = 2200 }: Props) {
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   filter:
-                    "drop-shadow(0 0 20px rgba(139, 92, 246, 0.3)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.2))",
+                    "drop-shadow(0 0 20px rgba(29, 78, 216, 0.3)) drop-shadow(0 0 40px rgba(37, 99, 235, 0.2))",
                   textShadow:
-                    "0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(34, 211, 238, 0.3)",
+                    "0 0 30px rgba(29, 78, 216, 0.5), 0 0 60px rgba(37, 99, 235, 0.3)",
                 }}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -144,17 +144,17 @@ function NeonBorder({
     >
       <defs>
         <linearGradient id="nbGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#8b5cf6" />
-          <stop offset="30%" stopColor="#22d3ee" />
-          <stop offset="70%" stopColor="#6366f1" />
-          <stop offset="100%" stopColor="#8b5cf6" />
+          <stop offset="0%" stopColor="#1d4ed8" />
+          <stop offset="30%" stopColor="#3b82f6" />
+          <stop offset="70%" stopColor="#2563eb" />
+          <stop offset="100%" stopColor="#1d4ed8" />
         </linearGradient>
 
         {/* Gradiente radial para efecto de glow más suave */}
         <radialGradient id="nbGlowGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
-          <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#6366f1" stopOpacity="0.1" />
+          <stop offset="0%" stopColor="#1d4ed8" stopOpacity="0.8" />
+          <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#2563eb" stopOpacity="0.1" />
         </radialGradient>
 
         {/* Filtro de glow mejorado */}

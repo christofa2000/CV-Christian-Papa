@@ -74,9 +74,9 @@ export default function Contact() {
                 >
                   <Icon
                     size={24}
-                    className="text-neutral-400 group-hover:text-indigo-400 transition-colors"
+                    className="text-neutral-400 group-hover:text-blue-400 transition-colors"
                   />
-                  <span className="font-medium text-neutral-200 group-hover:text-indigo-400 transition-colors">
+                  <span className="font-medium text-neutral-200 group-hover:text-blue-400 transition-colors">
                     {link.name}
                   </span>
                 </motion.a>
