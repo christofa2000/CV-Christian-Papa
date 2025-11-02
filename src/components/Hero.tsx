@@ -106,7 +106,7 @@ export default function Hero() {
               {/* Marco + imagen redonda (objectPosition alto) */}
               <div className="relative w-full h-full rounded-full border border-white/10 shadow-2xl overflow-hidden ring-1 ring-white/10">
                 <Image
-                  src="/Fotocv2.png"
+                  src="/fotocv2.png"
                   alt="Christian Oscar Papa - Frontend Developer"
                   fill
                   className="object-cover"
@@ -114,6 +114,7 @@ export default function Hero() {
                   style={{ objectPosition: "50% 20%" }}
                   sizes="(max-width: 768px) 320px, (max-width: 1024px) 384px, 416px"
                   priority
+                  fetchPriority="high"
                 />
               </div>
             </div>
