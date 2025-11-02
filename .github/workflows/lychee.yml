@@ -1,0 +1,58 @@
+name: Verificación de enlaces con Lychee
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+  workflow_dispatch:
+
+jobs:
+  link_checker:
+    runs-on: ubuntu-latest
+    name: Verificar enlaces
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Instalar Lychee
+        run: |
+          curl -sSfL https://github.com/lycheeverse/lychee/releases/latest/download/lychee-linux-x86_64.tar.gz | tar xz
+          sudo mv lychee /usr/local/bin/
+          lychee --version
+
+      - name: Verificar enlaces en el código fuente
+        run: |
+          lychee \
+            --verbose \
+            --no-progress \
+            --exclude-all-private \
+            --exclude-mail \
+            --config lychee.toml \
+            ./src
+
+      - name: Verificar enlaces en archivos de documentación
+        continue-on-error: true
+        run: |
+          if [ -f README.md ]; then
+            lychee \
+              --verbose \
+              --no-progress \
+              --exclude-all-private \
+              --exclude-mail \
+              --config lychee.toml \
+              ./README.md
+          fi
+
+      - name: Comentario en PR (si hay errores)
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ Se encontraron enlaces rotos. Por favor, revisa los resultados del workflow.'
+            })

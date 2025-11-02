@@ -1,0 +1,56 @@
+# Configuración de Lychee Link Checker
+# https://github.com/lycheeverse/lychee
+
+# Timeout en segundos para cada petición
+timeout = 20
+
+# Número de intentos por enlace
+retries = 3
+
+# Verificar certificados SSL
+verify_ssl = true
+
+# Base URL para resolver enlaces relativos (opcional)
+# base_url = "https://tu-dominio.com"
+
+# Headers personalizados (opcional)
+[headers]
+user-agent = "lychee-link-checker"
+
+# Excluir dominios (opcional)
+exclude = [
+  # Agregar aquí dominios que quieras excluir de la verificación
+]
+
+# Tipos de archivos a verificar
+accept = [
+  ".html",
+  ".md",
+  ".txt",
+  ".tsx",
+  ".ts",
+  ".jsx",
+  ".js",
+]
+
+# Verbose output
+verbose = true
+
+# Formato de salida: "human" o "json"
+format = "human"
+
+# Colores en la salida
+color = true
+
+# Incluir archivos que normalmente están ignorados por .gitignore
+include_all = false
+
+# Configuración de caché (opcional)
+# cache_timeout = 300
+
+# Excluir todos los enlaces privados (localhost, IPs privadas, etc.)
+exclude_all_private = true
+
+# Excluir enlaces de correo electrónico
+exclude_mail = true
+

@@ -1,0 +1,23 @@
+# Archivos y patrones a ignorar en la verificación de enlaces
+
+# Archivos de build y generados
+.next/
+out/
+dist/
+build/
+node_modules/
+
+# Archivos de configuración y test
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+__snapshots__/
+*.snap
+
+# Archivos de documentación que pueden tener enlaces rotos temporales
+# README.md
+
+# Archivos de configuración específicos si es necesario
+# Agregar aquí archivos que contengan enlaces de ejemplo o temporales
+

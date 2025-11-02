@@ -106,7 +106,7 @@ export default function Hero() {
               {/* Marco + imagen redonda (objectPosition alto) */}
               <div className="relative w-full h-full rounded-full border border-white/10 shadow-2xl overflow-hidden ring-1 ring-white/10">
                 <Image
-                  src="/Fotocv.png"
+                  src="/Fotocv2.png"
                   alt="Christian Oscar Papa - Frontend Developer"
                   fill
                   className="object-cover"
