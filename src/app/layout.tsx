@@ -131,6 +131,13 @@ export default function RootLayout({
           <ChatSidebar />
           <ChatFabButton />
         </ChatOpenProvider>
+
+        {/* Frame/borde fijo en los bordes de la pantalla — último en DOM y z-[55] para que NUNCA quede tapado por el contenido al scrollear */}
+        <div
+          aria-hidden
+          className="fixed inset-0 pointer-events-none z-[55] border border-neutral-700/80 rounded-none"
+          style={{ boxSizing: "border-box" }}
+        />
       </body>
     </html>
   );
