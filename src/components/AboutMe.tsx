@@ -1,39 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import LogoLoop from "./LogoLoop";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiRedux,
+  SiPrisma,
+  SiPostgresql,
+  SiNodedotjs,
+  SiCloudflare,
+  SiVercel,
+  SiGit,
+  SiGithub,
+  SiFigma,
+  SiVitest,
+  SiJest,
+} from "react-icons/si";
 
 /** Fade para el bloque de texto */
 const fadeText = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
-};
-
-/** Variants para el grid con stagger suave */
-const gridStagger = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      ease: "easeOut",
-      duration: 0.25,
-      /** controla el delay entre hijos */
-      staggerChildren: 0.06,
-      /** leve retardo inicial para que se lea el título antes */
-      delayChildren: 0.1,
-    },
-  },
-};
-
-/** Variants para cada ícono */
-const iconIn = {
-  hidden: { opacity: 0, y: 10, scale: 0.96 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.32, ease: "easeOut" },
-  },
 };
 
 export default function AboutMe() {
@@ -81,50 +72,111 @@ export default function AboutMe() {
           </p>
         </motion.div>
 
-        {/* Íconos del stack (skillicons.dev) con stagger */}
+        {/* Logos del stack con LogoLoop */}
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.25 }}
-          variants={gridStagger}
-          className="mt-14 md:mt-16 flex flex-wrap justify-center gap-4 sm:gap-5 md:gap-6"
+          variants={fadeText}
+          className="mt-14 md:mt-16"
         >
-          {[
-            "react",
-            "nextjs",
-            "typescript",
-            "javascript",
-            "tailwind",
-            "redux",
-            "prisma",
-            "postgres",
-            "nodejs",
-            "cloudflare",
-            "vercel",
-            "git",
-            "github",
-            "figma",
-            "vitest",
-            "jest",
-          ].map((icon) => (
-            <motion.div
-              key={icon}
-              variants={iconIn}
-              whileHover={{ scale: 1.12, rotate: 1 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 18 }}
-              className="w-12 h-12 md:w-14 md:h-14"
-            >
-              <Image
-                src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
-                alt={icon}
-                width={56}
-                height={56}
-                unoptimized
-                className="rounded-lg"
-              />
-            </motion.div>
-          ))}
+          <div className="text-neutral-300">
+            <LogoLoop
+              logos={[
+                {
+                  node: <SiReact className="text-[#61dafb]" />,
+                  title: "React",
+                  href: "https://react.dev",
+                },
+                {
+                  node: <SiNextdotjs className="text-white" />,
+                  title: "Next.js",
+                  href: "https://nextjs.org",
+                },
+                {
+                  node: <SiTypescript className="text-[#3178c6]" />,
+                  title: "TypeScript",
+                  href: "https://www.typescriptlang.org",
+                },
+                {
+                  node: <SiJavascript className="text-[#f7df1e]" />,
+                  title: "JavaScript",
+                  href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+                },
+                {
+                  node: <SiTailwindcss className="text-[#06b6d4]" />,
+                  title: "Tailwind CSS",
+                  href: "https://tailwindcss.com",
+                },
+                {
+                  node: <SiRedux className="text-[#764abc]" />,
+                  title: "Redux",
+                  href: "https://redux.js.org",
+                },
+                {
+                  node: <SiPrisma className="text-[#2d3748]" />,
+                  title: "Prisma",
+                  href: "https://www.prisma.io",
+                },
+                {
+                  node: <SiPostgresql className="text-[#336791]" />,
+                  title: "PostgreSQL",
+                  href: "https://www.postgresql.org",
+                },
+                {
+                  node: <SiNodedotjs className="text-[#339933]" />,
+                  title: "Node.js",
+                  href: "https://nodejs.org",
+                },
+                {
+                  node: <SiCloudflare className="text-[#f38020]" />,
+                  title: "Cloudflare",
+                  href: "https://www.cloudflare.com",
+                },
+                {
+                  node: <SiVercel className="text-white" />,
+                  title: "Vercel",
+                  href: "https://vercel.com",
+                },
+                {
+                  node: <SiGit className="text-[#f05032]" />,
+                  title: "Git",
+                  href: "https://git-scm.com",
+                },
+                {
+                  node: <SiGithub className="text-white" />,
+                  title: "GitHub",
+                  href: "https://github.com",
+                },
+                {
+                  node: <SiFigma className="text-[#f24e1e]" />,
+                  title: "Figma",
+                  href: "https://www.figma.com",
+                },
+                {
+                  node: <SiVitest className="text-[#729b1b]" />,
+                  title: "Vitest",
+                  href: "https://vitest.dev",
+                },
+                {
+                  node: <SiJest className="text-[#c21325]" />,
+                  title: "Jest",
+                  href: "https://jestjs.io",
+                },
+              ]}
+              speed={80}
+              direction="left"
+              logoHeight={56}
+              gap={40}
+              hoverSpeed={20}
+              scaleOnHover
+              fadeOut
+              fadeOutColor="#0a0a0f"
+              ariaLabel="Tecnologías y herramientas"
+              className="h-20"
+            />
+          </div>
+          {/* Paleta anterior: grid con skillicons.dev usando Image components */}
         </motion.div>
       </div>
     </section>

@@ -7,7 +7,7 @@ interface Project {
   id: string;
   title: string;
   description: string;
-  image: string;
+  image: string; // ✅ 1 sola foto por proyecto
   demoUrl?: string;
   repoUrl?: string;
   technologies: string[];
@@ -16,19 +16,19 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: "museo-del-tiempo",
-    title: "Museo del Tiempo",
+    id: "juegotenis",
+    title: "Juego Tenis",
     description:
-      "Aplicación web que consume tres APIs diferentes para ofrecer una experiencia interactiva y educativa. Combina tecnología moderna y curiosidad histórica, permitiendo explorar datos, imágenes y eventos de distintas épocas a través de una interfaz intuitiva y dinámica.",
-    image: "/api.png",
-    demoUrl: "https://api-museo-del-tiempo.vercel.app/",
-    repoUrl: "https://github.com/christofa2000/API-Museo-del-tiempo",
+      "Plataforma web para clubes y academias de tenis orientada a la gestión de clases, sedes y comunicación con alumnos. Desarrollada con foco en experiencia de usuario, diseño moderno y performance, incluyendo animaciones sutiles y una arquitectura frontend escalable.",
+    image: "/juegotenis.png",
+    demoUrl: "https://juegotenis.vercel.app/",
+    repoUrl: "https://github.com/christofa2000/Juegotenis.git",
     technologies: [
-      "Next.js",
+      "Next.js (App Router)",
       "TypeScript",
       "Tailwind CSS",
       "Framer Motion",
-      "APIs públicas (iTunes, Wikipedia, Art Institute of Chicago)",
+      "Responsive Design",
     ],
   },
   {
@@ -60,7 +60,6 @@ const projects: Project[] = [
       "🧪 Tests unitarios y E2E (Jest + Playwright).",
     ],
   },
-
   {
     id: "credit-cards-lab",
     title: "Credit Cards Lab",
@@ -76,6 +75,22 @@ const projects: Project[] = [
       "Framer Motion",
       "Prisma",
       "PostgreSQL",
+    ],
+  },
+  {
+    id: "museo-del-tiempo",
+    title: "Museo del Tiempo",
+    description:
+      "Aplicación web que consume tres APIs diferentes para ofrecer una experiencia interactiva y educativa. Combina tecnología moderna y curiosidad histórica, permitiendo explorar datos, imágenes y eventos de distintas épocas a través de una interfaz intuitiva y dinámica.",
+    image: "/api.png",
+    demoUrl: "https://api-museo-del-tiempo.vercel.app/",
+    repoUrl: "https://github.com/christofa2000/API-Museo-del-tiempo",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "APIs públicas (iTunes, Wikipedia, Art Institute of Chicago)",
     ],
   },
 ];
@@ -112,7 +127,7 @@ export default function ProjectsGrid() {
           </motion.p>
         </motion.div>
 
-        {/* Lista de proyectos con más espacio y alternado */}
+        {/* Lista de proyectos */}
         <div className="space-y-20 md:space-y-24">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
