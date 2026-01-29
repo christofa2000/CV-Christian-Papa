@@ -1,7 +1,10 @@
-import ChatBubble from "@/components/ChatBubble";
+import ChatFabButton from "@/components/chat/ChatFabButton";
+import ChatSidebar from "@/components/chat/ChatSidebar";
+import { ChatOpenProvider } from "@/context/ChatOpenContext";
 import IntroGate from "@/components/IntroGate";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import type { Metadata } from "next";
+import "@/components/LogoLoop.css";
 import "./globals.css";
 
 /** URL base del sitio: en local usa localhost, en prod lee NEXT_PUBLIC_SITE_URL */
@@ -117,13 +120,17 @@ export default function RootLayout({
         </div>
 
         {/* Contenido */}
-        <IntroGate>
-          <main id="content" tabIndex={-1}>
-            {children}
-          </main>
-        </IntroGate>
+        <ChatOpenProvider>
+          <IntroGate>
+            <main id="content" tabIndex={-1}>
+              {children}
+            </main>
+          </IntroGate>
 
-        <ChatBubble />
+          {/* Chat: sidebar + FAB — estado en memoria, no navega a /chat */}
+          <ChatSidebar />
+          <ChatFabButton />
+        </ChatOpenProvider>
       </body>
     </html>
   );

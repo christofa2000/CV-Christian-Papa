@@ -1,7 +1,8 @@
 "use client";
 
+import { useChatOpen } from "@/context/ChatOpenContext";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, MessageCircle, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -13,6 +14,7 @@ const navItems = [
 export default function NavBar() {
   const [activeSection, setActiveSection] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { toggleChat, isChatOpen } = useChatOpen();
 
   // Scrollspy
   useEffect(() => {
@@ -71,6 +73,21 @@ export default function NavBar() {
                   </button>
                 );
               })}
+              <button
+                type="button"
+                onClick={toggleChat}
+                aria-label={isChatOpen ? "Cerrar chat" : "Abrir chat"}
+                aria-expanded={isChatOpen}
+                className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors focus-ring flex items-center gap-2
+                  ${
+                    isChatOpen
+                      ? "text-white border-white/15 bg-white/10"
+                      : "text-neutral-300 hover:text-neutral-100 border-white/10 hover:bg-white/10"
+                  }`}
+              >
+                <MessageCircle size={18} aria-hidden />
+                Chat
+              </button>
             </div>
 
             {/* Mobile toggle */}
@@ -114,6 +131,18 @@ export default function NavBar() {
                   </button>
                 );
               })}
+              <button
+                type="button"
+                onClick={() => {
+                  toggleChat();
+                  setIsMobileMenuOpen(false);
+                }}
+                aria-label={isChatOpen ? "Cerrar chat" : "Abrir chat"}
+                className="flex w-full items-center gap-2 text-left px-5 py-2 text-sm font-medium rounded-full transition-colors focus-ring border text-neutral-300 hover:text-neutral-100 hover:bg-neutral-800/60 border-white/10"
+              >
+                <MessageCircle size={18} aria-hidden />
+                Chat
+              </button>
             </div>
           </motion.div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import "./LogoLoop.css";
+// LogoLoop.css se importa en app/layout.tsx para evitar 404 en dev (Turbopack)
 
 export type LogoItem =
   | {

@@ -56,25 +56,6 @@
     "text": "Bailo tango desde hace varios años. Esa disciplina me enseñó que la técnica precisa sin sensibilidad emocional no funciona. Lo mismo aplico al código: cada interfaz debe tener ritmo, armonía visual y una conexión emocional real con quien la usa."
   },
   {
-    "id": "stack",
-    "tags": ["skills", "tecnologias", "frontend", "mobile"],
-    "keywords": [
-      "tecnologías",
-      "stack tecnológico",
-      "herramientas de desarrollo",
-      "frameworks",
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind",
-      "React Native",
-      "Zustand",
-      "Redux Toolkit",
-      "React Query"
-    ],
-    "text": "Mi stack principal: React, Next.js, TypeScript, TailwindCSS y React Native. Para estado manejo Zustand y Redux Toolkit. Trabajo con Prisma, PostgreSQL y Supabase en backend, Figma para diseño, y Jest/Vitest para testing. Todo desplegado en Vercel con foco en performance y accesibilidad."
-  },
-  {
     "id": "filosofia",
     "tags": ["principios", "metodologia", "performance"],
     "keywords": [
@@ -380,5 +361,29 @@
       "cv chris"
     ],
     "text": "Hablá conmigo como si charlaras con Christian. Preguntame sobre mi experiencia en Santander o Despegar, qué tecnologías uso, qué me inspira como desarrollador, o qué aprendí escalando el Aconcagua. Respondo con un tono profesional, empático y humano."
+  },
+  {
+    "id": "stack",
+    "tags": ["skills", "tecnologias", "frontend", "mobile"],
+    "keywords": [
+      "tecnologías",
+      "stack tecnológico",
+      "herramientas de desarrollo",
+      "frameworks",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "shadcn",
+      "shadcn ui",
+      "React Native",
+      "Zustand",
+      "Redux Toolkit",
+      "React Query",
+      "design system",
+      "componentes reutilizables"
+    ],
+    "text": "Mi stack principal incluye React, Next.js (App Router), TypeScript y Tailwind CSS, utilizando shadcn/ui para construir componentes accesibles, consistentes y reutilizables sobre Radix UI. Desarrollo interfaces modernas con foco en UX, performance y diseño escalable. Para manejo de estado uso Zustand y Redux Toolkit, y React Query para data fetching. Trabajo con Prisma, PostgreSQL y Supabase en backend, Figma para diseño y Jest/Vitest para testing. Todo desplegado en Vercel con énfasis en performance, accesibilidad y buenas prácticas."
   }
+  
 ]

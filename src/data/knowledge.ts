@@ -4,62 +4,62 @@ const knowledge: KnowledgeData = [
   {
     id: "persona",
     tags: ["meta", "perfil", "presentacion"],
-    text: "👨‍💻 Christian Oscar Papa es un Desarrollador Frontend y Mobile especializado en React, React Native y TypeScript. Crea experiencias digitales escalables, fluidas y visualmente cuidadas, fusionando precisión técnica con una visión artística del diseño. Trabaja de forma 100% remota y domina español e inglés técnico. Su comunicación —profesional, empática y auténtica— se refleja también en el tono de ChrisBot.",
+    text: "👨‍💻 Christian Oscar Papa es Desarrollador Frontend y Mobile especializado en React, React Native y TypeScript. Construye aplicaciones web y mobile escalables, con fuerte foco en experiencia de usuario, performance y diseño. Trabaja de forma 100% remota desde Buenos Aires, Argentina, y se comunica en español e inglés técnico. Su estilo combina precisión técnica, sensibilidad visual y una mirada humana sobre el producto.",
   },
   {
     id: "motivacion",
     tags: ["personal", "valores", "superacion"],
-    text: "🏔️ Más allá del código, Christian enfrenta los desafíos con resiliencia y pasión. Su mayor reto personal fue escalar el Aconcagua, la montaña más alta de América. Allí aprendió a mantener la calma bajo presión, valorar cada pequeño avance y perseverar ante la adversidad. Esa experiencia guía su forma de desarrollar: con disciplina, enfoque y una mentalidad de mejora continua.",
+    text: "🏔️ Más allá del código, Christian encara los desafíos con resiliencia y foco. Su mayor reto personal fue escalar el Aconcagua, la montaña más alta de América, una experiencia que le enseñó disciplina, manejo de la presión y constancia. Esa mentalidad la aplica al desarrollo de software: avanzar paso a paso, adaptarse y sostener la calidad incluso en contextos exigentes.",
   },
   {
     id: "arte",
     tags: ["personal", "creatividad", "tango", "diseno"],
-    text: "💃 Además de programar, Christian es bailarín de tango, una disciplina que equilibra técnica y sensibilidad. Esa armonía entre precisión y emoción se refleja en su código: busca que cada interfaz tenga ritmo, coherencia visual y una conexión humana con el usuario. Su enfoque artístico potencia su capacidad de diseñar experiencias digitales memorables.",
+    text: "💃 Christian baila tango desde hace varios años. Esta disciplina le enseñó que la técnica sin sensibilidad no alcanza. En el desarrollo frontend aplica la misma lógica: interfaces con ritmo, armonía visual y una conexión emocional real con el usuario.",
   },
   {
     id: "stack",
     tags: ["skills", "tecnologias", "frontend", "mobile"],
-    text: "⚙️ Stack principal: React, Next.js, React Native, TypeScript, Vite, Zustand, Redux Toolkit, React Query, TailwindCSS, Material UI, ShadCN, Ant Design, Jest, Vitest, React Testing Library, Node.js, Prisma, Postgres, Supabase, Git y Vercel. En diseño utiliza Figma y Framer Motion, priorizando accesibilidad (WCAG) y alto rendimiento.",
+    text: "⚙️ Stack principal: React, Next.js (App Router), React Native y TypeScript. Para UI utiliza Tailwind CSS junto con shadcn/ui (basado en Radix UI) para construir componentes accesibles, consistentes y reutilizables. Maneja estado con Zustand y Redux Toolkit, y data fetching con React Query. En backend trabaja con Node.js, Prisma, PostgreSQL y Supabase. Usa Figma y Framer Motion para diseño y animaciones, testing con Jest/Vitest y React Testing Library, y despliega en Vercel con foco en performance y accesibilidad (WCAG).",
   },
   {
     id: "filosofia",
     tags: ["principios", "metodologia", "performance"],
-    text: "💡 Christian combina la lógica del ingeniero con la mirada del artista. Considera cada proyecto como una montaña a escalar: requiere constancia, adaptabilidad y claridad de propósito. Aplica metodologías ágiles, testing continuo y diseño centrado en el usuario. Cree en el código limpio, el aprendizaje constante y los resultados que generan impacto real.",
+    text: "💡 Christian concibe el desarrollo como un proceso de mejora continua. Aplica metodologías ágiles, testing constante y diseño centrado en el usuario. Cree en el código limpio, la arquitectura escalable y en productos que generen impacto real tanto técnico como humano.",
   },
   {
     id: "experiencia:santander",
     tags: ["experiencia", "empresa", "banco"],
-    text: "🏦 React Developer en Santander Tecnología Argentina (jun. 2024 – actualidad). Desarrolla interfaces seguras y accesibles con React, TypeScript y Redux. Cumple estándares de seguridad bancaria, refactoriza componentes críticos y mejora la performance de aplicaciones corporativas. Participa activamente en code reviews con foco en calidad y buenas prácticas.",
+    text: "🏦 React Developer en Santander Tecnología Argentina (jun. 2024 – actualidad). Desarrolla interfaces seguras y accesibles con React, TypeScript y Redux, cumpliendo estándares de seguridad bancaria. Refactoriza componentes críticos, mejora performance y participa activamente en code reviews.",
   },
   {
     id: "experiencia:despegar",
     tags: ["experiencia", "empresa", "viajes"],
-    text: "✈️ React Developer en Despegar (jul. 2023 – may. 2024). Implementó nuevas funcionalidades en la plataforma de reservas de hoteles y vuelos, usando React, TypeScript y TailwindCSS. Integró APIs en tiempo real y optimizó componentes reutilizables. Mejoró el rendimiento (+15 puntos en Lighthouse) y colaboró estrechamente con equipos de UX/UI y backend.",
+    text: "✈️ React Developer en Despegar (jul. 2023 – may. 2024). Trabajó en la plataforma de reservas de hoteles y vuelos usando React, TypeScript y Tailwind CSS. Implementó componentes reutilizables, integró APIs en tiempo real y logró mejoras de +15 puntos en Lighthouse.",
   },
   {
     id: "experiencia:bewise",
     tags: ["experiencia", "empresa", "scrum"],
-    text: "💻 React Developer en Bewise (jun. 2022 – jul. 2023). Desarrolló aplicaciones internas bajo metodología SCRUM. Stack: React, Vite y TailwindCSS. Mejoró accesibilidad y performance (Lighthouse +95). Participó en QA técnico, control de versiones y ciclos de release.",
+    text: "💻 React Developer en Bewise (jun. 2022 – jul. 2023). Desarrolló aplicaciones internas bajo metodología SCRUM utilizando React, Vite y Tailwind CSS. Mejoró accesibilidad y performance alcanzando Lighthouse +95. Participó en QA técnico y procesos de release.",
   },
   {
     id: "experiencia:circulo",
     tags: ["experiencia", "empresa", "ecommerce"],
-    text: "🛒 Frontend Developer en Círculo Mágico (oct. 2021 – jun. 2022). Implementó el carrito de compras del e-commerce priorizando rendimiento y experiencia de usuario. Integró Redux y APIs RESTful, optimizando endpoints y flujos de navegación.",
+    text: "🛒 Frontend Developer en Círculo Mágico (oct. 2021 – jun. 2022). Implementó el carrito de compras del e-commerce con foco en UX y rendimiento. Utilizó Redux y consumió APIs REST, optimizando flujos y tiempos de respuesta.",
   },
   {
     id: "experiencia:freelance",
     tags: ["experiencia", "freelance", "mobile"],
-    text: "🚀 Frontend & Mobile Developer Freelance (nov. 2020 – sept. 2021). Desarrolló proyectos con React, React Native, Next.js, Vue.js y TypeScript. Creó apps híbridas con Expo y React Native Paper, optimizadas para Android e iOS. Su foco: interfaces rápidas, consistentes y agradables de usar.",
+    text: "🚀 Frontend & Mobile Developer Freelance (nov. 2020 – sept. 2021). Desarrolló proyectos web y mobile con React, Next.js, React Native y TypeScript. Creó apps híbridas con Expo, optimizadas para Android e iOS, priorizando usabilidad y coherencia visual.",
   },
   {
     id: "educacion",
     tags: ["formacion", "educacion"],
-    text: "🎓 Udemy Alumni (2020–2021): formación en Desarrollo Web y Mobile con React, Next.js, React Native, TypeScript, Node.js, Redux y Zustand. Instituto Industrial Luis A. Huergo: Técnico Profesional en Computación.",
+    text: "🎓 Formación autodidacta a través de Udemy (2020–2021) en Desarrollo Web y Mobile con React, Next.js, React Native, TypeScript y Node.js. Técnico Profesional en Computación, egresado del Instituto Industrial Luis A. Huergo.",
   },
   {
     id: "softskills",
     tags: ["habilidades", "blandas"],
-    text: "🧩 Comunicación efectiva, trabajo en equipo, adaptabilidad, resiliencia, sensibilidad artística, organización, liderazgo técnico, resolución creativa de problemas y orientación a la mejora continua.",
+    text: "🧩 Comunicación clara, trabajo en equipo, liderazgo técnico, adaptabilidad, resiliencia, pensamiento crítico y sensibilidad artística aplicada al diseño y a la resolución de problemas complejos.",
   },
   {
     id: "contacto",
@@ -69,7 +69,7 @@ const knowledge: KnowledgeData = [
   {
     id: "faq",
     tags: ["faq", "preguntas-frecuentes"],
-    text: "❓ Q: ¿Cuál es tu especialidad? A: Desarrollo Frontend y Mobile con React, React Native y TypeScript.\nQ: ¿Tenés experiencia en apps móviles? A: Sí, desarrollé proyectos con React Native y Expo optimizados para Android e iOS.\nQ: ¿Qué tipo de proyectos te interesan? A: Web o mobile con foco en UI moderna, rendimiento y accesibilidad.\nQ: ¿Estás abierto a nuevas oportunidades? A: Sí, busco roles remotos como Senior Frontend o React Native Developer.\nQ: ¿Qué te diferencia? A: Mi equilibrio entre código limpio, diseño artístico y una visión centrada en la experiencia humana del usuario.",
+    text: "❓ Especialidad: Frontend y Mobile con React, React Native y TypeScript. Experiencia en apps móviles: sí, con React Native y Expo. Proyectos de interés: productos web o mobile con UI moderna, performance y accesibilidad. Diferencial: equilibrio entre ingeniería sólida, diseño visual y enfoque humano en la experiencia de usuario.",
   },
 ];
 

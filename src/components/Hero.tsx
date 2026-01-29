@@ -110,11 +110,9 @@ export default function Hero() {
                   alt="Christian Oscar Papa - Frontend Developer"
                   fill
                   className="object-cover"
-                  // Enfoca más arriba: centra en X y sube en Y (20%)
                   style={{ objectPosition: "50% 20%" }}
                   sizes="(max-width: 768px) 320px, (max-width: 1024px) 384px, 416px"
-                  priority
-                  fetchPriority="high"
+                  loading="lazy"
                 />
               </div>
             </div>
