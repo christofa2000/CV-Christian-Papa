@@ -19,6 +19,11 @@ export type LogoItem =
       height?: number;
     };
 
+/** Item con node (ReactNode) */
+type LogoItemNode = Extract<LogoItem, { node: React.ReactNode }>;
+/** Item con src (imagen) */
+type LogoItemSrc = Extract<LogoItem, { src: string }>;
+
 export interface LogoLoopProps {
   logos: LogoItem[];
   speed?: number;
@@ -322,32 +327,38 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         const content = isNodeItem ? (
           <span
             className="logoloop__node"
-            aria-hidden={!!item.href && !item.ariaLabel}
+            aria-hidden={!!item.href && !(item as LogoItemNode).ariaLabel}
           >
-            {(item as any).node}
+            {(item as LogoItemNode).node}
           </span>
         ) : (
-          <img
-            src={(item as any).src}
-            srcSet={(item as any).srcSet}
-            sizes={(item as any).sizes}
-            width={(item as any).width}
-            height={(item as any).height}
-            alt={(item as any).alt ?? ""}
-            title={(item as any).title}
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-          />
+          (() => {
+            const imgItem = item as LogoItemSrc;
+            return (
+              <img
+                src={imgItem.src}
+                srcSet={imgItem.srcSet}
+                sizes={imgItem.sizes}
+                width={imgItem.width}
+                height={imgItem.height}
+                alt={imgItem.alt ?? ""}
+                title={imgItem.title}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+              />
+            );
+          })()
         );
 
         const itemAriaLabel = isNodeItem
-          ? (item as any).ariaLabel ?? (item as any).title
-          : (item as any).alt ?? (item as any).title;
-        const itemContent = (item as any).href ? (
+          ? (item as LogoItemNode).ariaLabel ?? (item as LogoItemNode).title
+          : (item as LogoItemSrc).alt ?? (item as LogoItemSrc).title;
+        const itemHref = "href" in item ? item.href : undefined;
+        const itemContent = itemHref ? (
           <a
             className="logoloop__link"
-            href={(item as any).href}
+            href={itemHref}
             aria-label={itemAriaLabel || "logo link"}
             target="_blank"
             rel="noreferrer noopener"
