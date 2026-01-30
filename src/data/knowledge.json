@@ -384,6 +384,24 @@
       "componentes reutilizables"
     ],
     "text": "Mi stack principal incluye React, Next.js (App Router), TypeScript y Tailwind CSS, utilizando shadcn/ui para construir componentes accesibles, consistentes y reutilizables sobre Radix UI. Desarrollo interfaces modernas con foco en UX, performance y diseño escalable. Para manejo de estado uso Zustand y Redux Toolkit, y React Query para data fetching. Trabajo con Prisma, PostgreSQL y Supabase en backend, Figma para diseño y Jest/Vitest para testing. Todo desplegado en Vercel con énfasis en performance, accesibilidad y buenas prácticas."
+  },
+  {
+    "id": "humor:programadores",
+    "tags": ["humor", "chistes", "programacion", "relajado"],
+    "keywords": [
+      "chiste",
+      "chistes",
+      "humor",
+      "algo gracioso",
+      "programadores",
+      "chiste de programadores",
+      "humor developer",
+      "broma",
+      "reír",
+      "distendido"
+    ],
+    "text": "😄 Algunos chistes de programadores:\n\n1) ¿Por qué los programadores confunden Halloween con Navidad? Porque OCT 31 == DEC 25.\n\n2) Un programador entra a un bar y pide: 1 cerveza. Luego pide: 0 cervezas. Luego pide: -1 cervezas. Luego pide: 999999 cervezas. El bar explota.\n\n3) —¿Cuántos programadores hacen falta para cambiar una lamparita? —Ninguno, es un problema de hardware.\n\n4) El usuario dice: “anda lento”. El programador responde: “en mi máquina funciona”.\n\n5) Programar es como escribir un libro… excepto que si te olvidás una coma, nada funciona.\n\nSi querés, te cuento más 😄"
   }
+  
   
 ]

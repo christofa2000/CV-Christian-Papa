@@ -6,6 +6,59 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY || "",
 });
 
+const GROQ_MODEL = "llama-3.3-70b-versatile";
+
+/** Fallback cuando el modelo no devuelve texto válido (regla anti-silencio) */
+const FALLBACK_RESPONSE =
+  "Estoy acá 🙂 ¿En qué te puedo ayudar? Podés preguntar por mi experiencia, tecnologías o proyectos.";
+
+/** Detecta si el mensaje es un saludo o charla informal */
+function isGreeting(text: string): boolean {
+  const t = text.trim().toLowerCase().replace(/\s+/g, " ");
+  if (!t) return false;
+  const greetings = [
+    "hola",
+    "holas",
+    "buenas",
+    "buen día",
+    "buenos días",
+    "buenas tardes",
+    "buenas noches",
+    "hey",
+    "hi",
+    "hello",
+    "qué tal",
+    "que tal",
+    "qué hay",
+    "que hay",
+    "cómo estás",
+    "como estas",
+    "cómo andás",
+    "como andas",
+    "hola, estás",
+    "hola estás",
+    "estás?",
+    "estas?",
+    "saludos",
+    "buenísimo",
+    "buenisimo",
+  ];
+  if (greetings.some((g) => t === g || t.startsWith(g + " ") || t.startsWith(g + ","))) return true;
+  if (/^hola\s*[!?.,]*$/i.test(t) || /^buenas\s*[!?.,]*$/i.test(t)) return true;
+  if (/^(hey|hi|hello)\s*[!?.,]*$/i.test(t)) return true;
+  return false;
+}
+
+/** Respuesta humana para saludos (sin consultar knowledge) */
+function getGreetingResponse(query: string): string {
+  const t = query.trim().toLowerCase();
+  if (/^buenas?\s*[!?.,]*$/.test(t) || t.startsWith("buenas "))
+    return "¡Buenas! ¿Querés saber sobre mi experiencia, stack o proyectos?";
+  if (/^(hey|hi|hello)\s*[!?.,]*$/i.test(t))
+    return "¡Hola! 👋 I'm ChrisBot. Ask me about my experience, tech stack or projects.";
+  return "¡Hola! 👋 Soy ChrisBot. ¿En qué te puedo ayudar? Podés preguntar por mi experiencia, tecnologías o proyectos.";
+}
+
 export interface ChatMessage {
   role: "system" | "user" | "assistant";
   content: string;
@@ -31,15 +84,39 @@ export async function POST(request: NextRequest) {
     }
 
     const body: ChatRequest = await request.json();
-    const { query, context, history = [] } = body;
+    const { query, context: rawContext, history = [] } = body;
 
-    // Validar entrada
-    if (!query || !context) {
+    if (!query || typeof query !== "string") {
       return NextResponse.json(
-        { error: "query y context son requeridos" },
+        { error: "query es requerido" },
         { status: 400 }
       );
     }
+
+    const queryTrimmed = query.trim();
+    if (!queryTrimmed) {
+      return NextResponse.json(
+        { error: "query no puede estar vacío" },
+        { status: 400 }
+      );
+    }
+
+    // Handler de saludos: respuesta directa sin llamar al modelo
+    if (isGreeting(queryTrimmed)) {
+      const greetingResponse = getGreetingResponse(queryTrimmed);
+      if (process.env.NODE_ENV === "development") {
+        console.log("[ChrisBot] Saludo detectado → respuesta directa (sin Groq)");
+      }
+      return NextResponse.json({ response: greetingResponse });
+    }
+
+    // Contexto mínimo cuando RAG no devuelve nada (evita respuestas vacías)
+    const DEFAULT_CONTEXT =
+      "Christian Oscar Papa. Desarrollador Frontend y Mobile Senior. React, Next.js, TypeScript, Tailwind, React Native. Trabajo remoto desde Buenos Aires. Experiencia en Santander, Despegar, Bewise. Proyectos: Juego Tenis, Ecommerce Zapatillas, Credit Cards Lab, Museo del Tiempo.";
+    const context =
+      typeof rawContext === "string" && rawContext.trim().length > 0
+        ? rawContext.trim()
+        : DEFAULT_CONTEXT;
 
     // ChrisBot: identidad y reglas (ver instrucciones del producto)
     const systemPrompt = `Sos ChrisBot, el asistente personal de Christian Oscar Papa.
@@ -77,6 +154,11 @@ COMPORTAMIENTO
 - Si preguntan por experiencia laboral, mencioná Santander, Despegar, Bewise o proyectos propios.
 - Si preguntan "qué te diferencia", resaltá el equilibrio entre código, diseño y psicología social.
 - Si preguntan por proyectos, recomendá ejemplos reales (Juego Tenis, Zapatillas, Credit Cards Lab).
+
+HUMOR / CHISTES
+- Si el usuario pide un chiste, humor o algo gracioso → usá SIEMPRE el bloque id: humor:programadores del contexto.
+- Respondé con UN solo chiste a la vez, no todos juntos.
+- Mantené un tono liviano y cercano. Podés cerrar con "Si querés, te cuento otro 😄".
 
 TONO
 - Profesional, empático y humano.
@@ -147,7 +229,12 @@ REGLAS CRÍTICAS
 OBJETIVO
 - Ayudar a recruiters, clientes y desarrolladores a entender rápidamente quién es Christian, cómo trabaja y por qué es un buen candidato.
 
-Si una respuesta contiene frases como "no tengo información", "no dispongo de datos", "no puedo decir" → reintentar usando el knowledge antes de responder.
+ANTI-SILENCIO
+- NUNCA respondas con un mensaje vacío ni con frases de error genéricas.
+- Si no tenés certeza, ofrecé ayuda concreta: "¿Querés que te cuente sobre mi experiencia, stack o proyectos?"
+- Invitá siempre a continuar la conversación.
+
+Si una respuesta contiene frases como "no tengo información", "no dispongo de datos", "no puedo decir" → reformulá ofreciendo opciones concretas (experiencia, stack, proyectos).
 
 ---
 
@@ -169,25 +256,31 @@ ${context}`;
     ];
 
     // Llamar a Groq
+    if (process.env.NODE_ENV === "development") {
+      console.log("[ChrisBot] Llamando a Groq, modelo:", GROQ_MODEL);
+    }
     const completion = await groq.chat.completions.create({
       messages: messages as ChatCompletionMessageParam[],
-      model: "llama-3.3-70b-versatile",
+      model: GROQ_MODEL,
       temperature: 0.7,
       max_tokens: 512,
       stream: false,
     });
 
-    const response = completion.choices[0]?.message?.content;
+    let response = completion.choices[0]?.message?.content;
 
-    if (!response) {
-      return NextResponse.json(
-        { error: "No se recibió respuesta de Groq" },
-        { status: 500 }
-      );
+    // Regla anti-silencio: NUNCA responder vacío
+    if (response == null || typeof response !== "string" || !response.trim()) {
+      if (process.env.NODE_ENV === "development") {
+        console.warn("[ChrisBot] Respuesta vacía del modelo → usando fallback");
+      }
+      response = FALLBACK_RESPONSE;
+    } else {
+      response = response.trim();
     }
 
     return NextResponse.json({
-      response: response.trim(),
+      response,
     });
   } catch (error) {
     console.error("Error en API de chat:", error);

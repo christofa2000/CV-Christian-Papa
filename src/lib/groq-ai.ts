@@ -47,12 +47,16 @@ export async function getAIResponse(
 
     const data = await response.json();
 
-    if (!data.response) {
-      console.error("API Response sin 'response' field:", data);
-      throw new Error("La API no devolvió una respuesta válida");
+    // Regla anti-silencio: nunca devolver vacío al usuario
+    const fallback =
+      "Estoy acá 🙂 ¿En qué te puedo ayudar? Podés preguntar por mi experiencia, tecnologías o proyectos.";
+    const raw = data?.response;
+    if (raw == null || typeof raw !== "string" || !raw.trim()) {
+      console.warn("API devolvió respuesta vacía, usando fallback");
+      return fallback;
     }
 
-    return data.response;
+    return raw.trim();
   } catch (error) {
     console.error("Error en Groq AI:", error);
 

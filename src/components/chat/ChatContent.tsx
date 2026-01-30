@@ -27,6 +27,46 @@ const SUGGESTIONS = [
   "Desafíos",
 ] as const;
 
+/** Detecta si el mensaje es un saludo (respuesta directa sin RAG/API) */
+function isGreeting(text: string): boolean {
+  const t = text.trim().toLowerCase().replace(/\s+/g, " ");
+  if (!t) return false;
+  const greetings = [
+    "hola",
+    "holas",
+    "buenas",
+    "buen día",
+    "buenos días",
+    "hey",
+    "hi",
+    "hello",
+    "qué tal",
+    "que tal",
+    "cómo estás",
+    "como estas",
+    "hola, estás",
+    "hola estás",
+    "estás?",
+    "estas?",
+    "saludos",
+  ];
+  if (greetings.some((g) => t === g || t.startsWith(g + " ") || t.startsWith(g + ",")))
+    return true;
+  if (/^hola\s*[!?.,]*$/i.test(t) || /^buenas?\s*[!?.,]*$/i.test(t)) return true;
+  if (/^(hey|hi|hello)\s*[!?.,]*$/i.test(t)) return true;
+  return false;
+}
+
+/** Respuesta humana para saludos (sin consultar knowledge ni API) */
+function getGreetingResponse(query: string): string {
+  const t = query.trim().toLowerCase();
+  if (/^buenas?\s*[!?.,]*$/.test(t) || t.startsWith("buenas "))
+    return "¡Buenas! ¿Querés saber sobre mi experiencia, stack o proyectos?";
+  if (/^(hey|hi|hello)\s*[!?.,]*$/i.test(t))
+    return "¡Hola! 👋 I'm ChrisBot. Ask me about my experience, tech stack or projects.";
+  return "¡Hola! 👋 Soy ChrisBot. ¿En qué te puedo ayudar? Podés preguntar por mi experiencia, tecnologías o proyectos.";
+}
+
 export default function ChatContent() {
   const [ready, setReady] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([]);
@@ -150,32 +190,59 @@ export default function ChatContent() {
     setLoading(true);
     setError(null);
 
+    const inputTrimmed = input.trim();
+
     try {
+      // Handler de saludos: respuesta directa sin RAG ni API
+      if (isGreeting(inputTrimmed)) {
+        const greetingResponse = getGreetingResponse(inputTrimmed);
+        setMessages((m) => [
+          ...m,
+          { role: "user", content: inputTrimmed },
+          { role: "assistant", content: greetingResponse },
+        ]);
+        setLoading(false);
+        return;
+      }
+
       if (!ready) {
         await initEngine();
       }
 
       const k = isExtended ? 6 : messages.length === 0 ? K_FIRST : K_NEXT;
-      const results = await retrieve(input.trim(), k);
+      const results = await retrieve(inputTrimmed, k);
 
       let response: string;
 
-      if (useAI && results.length > 0) {
+      if (useAI) {
         try {
-          const context = results
-            .filter((r) => r && r.text && r.text.trim())
-            .map((r) => r.text.trim())
-            .join("\n\n");
+          // Siempre llamar a la API cuando useAI: si RAG vacío, la API usa contexto mínimo (anti-silencio)
+          const context =
+            results.length > 0
+              ? results
+                  .filter((r) => r && r.text && r.text.trim())
+                  .map((r) => r.text.trim())
+                  .join("\n\n")
+              : "";
 
           const history = messages.map((m) => ({
             role: m.role as "user" | "assistant",
             content: m.content,
           }));
 
-          response = await getAIResponse(input.trim(), context, history);
+          response = await getAIResponse(inputTrimmed, context, history);
+
+          // Regla anti-silencio: si la API devuelve vacío, fallback humano
+          if (!response || !response.trim()) {
+            response =
+              "Estoy acá 🙂 ¿En qué te puedo ayudar? Podés preguntar por mi experiencia, tecnologías o proyectos.";
+          }
         } catch (aiError) {
           console.error("Error con IA, usando fallback:", aiError);
-          response = generateResponse(input.trim(), results);
+          response =
+            results.length > 0
+              ? generateResponse(inputTrimmed, results)
+              : "Estoy acá 🙂 ¿En qué te puedo ayudar? Podés preguntar por mi experiencia, tecnologías o proyectos.";
         }
       } else {
         if (isExtended) {
@@ -186,19 +253,26 @@ export default function ChatContent() {
 
           response =
             numberedResults ||
-            "No encontré información relevante en mis fuentes locales.";
+            "Estoy acá 🙂 ¿En qué te puedo ayudar? Podés preguntar por mi experiencia, tecnologías o proyectos.";
         } else {
-          response = generateResponse(input.trim(), results);
+          response = generateResponse(inputTrimmed, results);
+          if (
+            !response ||
+            response.includes("No encontré información relevante")
+          ) {
+            response =
+              "Estoy acá 🙂 ¿En qué te puedo ayudar? Podés preguntar por mi experiencia, tecnologías o proyectos.";
+          }
         }
       }
 
       setMessages((m) => [
         ...m,
-        { role: "user", content: input.trim() },
+        { role: "user", content: inputTrimmed },
         { role: "assistant", content: response },
       ]);
 
-      setLastQuery(input.trim());
+      setLastQuery(inputTrimmed);
       setExtendedMode(isExtended);
     } catch (err) {
       console.error("Error asking question:", err);

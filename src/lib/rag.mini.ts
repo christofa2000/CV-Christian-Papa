@@ -241,6 +241,19 @@ function prioritizeByIntent(
     }
   }
 
+  // Humor / chistes → id "humor:programadores"
+  if (
+    /\b(chiste|chistes|humor|gracioso|broma|reir|reír|distendido|algo gracioso)\b/.test(
+      q
+    )
+  ) {
+    const idx = hits.findIndex((h) => h.id === "humor:programadores");
+    if (idx > 0) {
+      const [m] = hits.splice(idx, 1);
+      hits.unshift(m);
+    }
+  }
+
   return hits;
 }
 
