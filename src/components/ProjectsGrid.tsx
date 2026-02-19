@@ -16,6 +16,24 @@ interface Project {
 
 const projects: Project[] = [
   {
+  id: "impostor",
+  title: "Impostor Game",
+  description:
+    "Juego social multijugador inspirado en dinámicas tipo 'Quién es el impostor', desarrollado como aplicación web interactiva. Enfocado en experiencia de usuario, animaciones fluidas, lógica de juego en tiempo real local, manejo avanzado de estado global y diseño mobile-first para partidas rápidas entre amigos.",
+  image: "/impostor2.png",
+  demoUrl: "https://impostor-lovat.vercel.app/",
+  repoUrl: "https://github.com/christofa2000/impostor.git",
+  technologies: [
+    "Next.js (App Router)",
+    "TypeScript",
+    "Tailwind CSS",
+    "Zustand",
+    "Framer Motion",
+    "Zod",
+    "Responsive Design",
+  ],
+},
+  {
     id: "juegotenis",
     title: "Juego Tenis",
     description:
